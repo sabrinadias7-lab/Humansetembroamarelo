@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUMAN · Hub de Experiência e Bem-estar</title>
+<meta name="description" content="HUMAN é um hub digital de Employee Experience que organiza benefícios, conteúdos e iniciativas de bem-estar a partir do que o colaborador precisa. Projeto conceitual de portfólio.">
+<meta name="theme-color" content="#0B1B33">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="HUMAN · Tecnologia como meio. Cuidado como propósito.">
+<meta property="og:description" content="Hub digital de experiência e bem-estar do colaborador. Projeto conceitual de portfólio em Employee Experience.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%230B1B33'/><path d='M16 1a15 15 0 010 30z' fill='%23D6006F'/></svg>">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a href="#/" class="logo" aria-label="HUMAN, página inicial">
+      <span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__text">HUMAN</span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Navegação principal">
+      <a href="#/">Início</a>
+      <a href="#/dimensao/mente">Mente</a>
+      <a href="#/dimensao/corpo">Corpo</a>
+      <a href="#/dimensao/conexoes">Conexões</a>
+      <a href="#/beneficios">Benefícios</a>
+      <a href="#/dimensao/aprender">Aprender</a>
+      <a href="#/pausa">5 Minutos</a>
+      <a href="#/case">O Case</a>
+    </nav>
+
+    <div class="header__actions">
+      <button class="icon-btn" id="searchOpen" aria-label="Buscar" title="Buscar (⌘K)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+      </button>
+      <button class="icon-btn" id="savedOpen" aria-label="Minha lista" title="Minha lista">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.4 3.8h11.2v16.8L12 16.6l-5.6 4z"/></svg>
+        <span class="icon-btn__badge" id="savedCount" hidden>0</span>
+      </button>
+      <button class="icon-btn burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ APP ============ -->
+<main id="app" role="main"></main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <div class="logo">
+          <span class="logo__mark" aria-hidden="true"></span>
+          <span class="logo__text">HUMAN</span>
+        </div>
+        <p class="footer__concept">Tecnologia como meio.<br>Cuidado como propósito.</p>
+      </div>
+      <div>
+        <h4>Hubs</h4>
+        <ul>
+          <li><a href="#/dimensao/mente">Mente</a></li>
+          <li><a href="#/dimensao/corpo">Corpo</a></li>
+          <li><a href="#/dimensao/conexoes">Conexões</a></li>
+          <li><a href="#/dimensao/aprender">Aprender</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Acesso rápido</h4>
+        <ul>
+          <li><a href="#/beneficios">Meus Benefícios</a></li>
+          <li><a href="#/pausa">5 Minutos Para Mim</a></li>
+          <li><a href="#/apoio">Preciso de apoio</a></li>
+          <li><a href="#/setembro-amarelo">Setembro Amarelo 💛</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="#/case">O case</a></li>
+          <li><a href="#/case">Princípios de design</a></li>
+          <li><a href="#/case">Papel da IA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>Projeto conceitual de portfólio. Empresa, benefícios, dados e histórias são fictícios e servem para demonstrar a experiência.</p>
+      <p>HUMAN · Employee Experience e Bem-estar</p>
+    </div>
+  </div>
+</footer>
+
+<div class="disclaimer-bar">
+  <div class="wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+    <p>O HUMAN informa e direciona. Não realiza diagnósticos e não substitui atendimento profissional. Em situações que exijam cuidado clínico, procure os canais de apoio da empresa ou um profissional habilitado.</p>
+  </div>
+</div>
+
+<!-- ============ BUSCA ============ -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Buscar">
+  <div class="search-panel">
+    <div class="search-panel__field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+      <input type="text" id="searchInput" placeholder="Buscar benefícios, práticas e conteúdos" autocomplete="off">
+      <span class="search-panel__esc">ESC</span>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal__panel">
+    <button class="icon-btn modal__close" id="modalClose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="icons.js"></script>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
