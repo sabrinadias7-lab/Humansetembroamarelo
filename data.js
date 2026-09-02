@@ -547,7 +547,7 @@ window.HUMAN_DATA = {
         cartas: [
           { categoria: "pausa", label: "PAUSA", icon: "moon" },
           { categoria: "movimento", label: "MOVIMENTO", icon: "walk" },
-          { categoria: "conexao", label: "CONEXÃƒO", icon: "users" },
+          { categoria: "conexao", label: "CONEXÃ’O", icon: "users" },
           { categoria: "descoberta", label: "DESCOBERTA", icon: "spark" }
         ]
       },
@@ -585,7 +585,7 @@ window.HUMAN_DATA = {
        FEEDBACK
        --------------------------------------------------------------- */
     feedback: {
-      eyebrow: "ðŸ’¬ Sua experiÃªncia tambÃ©m importa",
+      eyebrow: "ðŸ’› Sua experiÃªncia tambÃ©m importa",
       title: "Deixe uma mensagem ðŸ’›",
       text: "Uma palavra, um pensamento ou algo que esta experiÃªncia despertou em vocÃª. O envio Ã© anÃ´nimo.",
       placeholderMsg: "Escreva aqui...",
