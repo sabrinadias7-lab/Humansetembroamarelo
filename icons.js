@@ -1,5 +1,5 @@
 /* =====================================================================
-   HUMAN â€” icons.js
+   HUMAN : icons.js
    Biblioteca de Ã­cones em SVG (traÃ§o 1.7, grade 24, cantos arredondados)
    ===================================================================== */
 
@@ -88,7 +88,7 @@ window.HUMAN_ICONS = {
 };
 
 /* =====================================================================
-   ExtensÃ£o â€” Especial Setembro Amarelo
+   ExtensÃ£o : Especial Setembro Amarelo
    Ãcones adicionais, no mesmo padrÃ£o (traÃ§o 1.7, grade 24).
    Mantidos separados do objeto original para nÃ£o tocar no conteÃºdo
    jÃ¡ existente do HUMAN.
