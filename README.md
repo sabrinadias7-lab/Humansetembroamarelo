@@ -35,7 +35,7 @@ Um hub digital com seis dimensões, conteúdo real em cada uma e algo para fazer
 Dentro do HUMAN, em `#/setembro-amarelo`, existe uma experiência de autocuidado com banco de
 experiências (livres, repetíveis, sem streak ou pontuação), quatro jogos leves, um calendário
 afetivo ("Meu Tempo por Mim") e um espaço de apoio com o CVV (188) e o Pode Falar. A experiência
-fica disponível o ano inteiro — "Setembro acaba. O cuidado continua."
+fica disponível o ano inteiro. "Setembro acaba. O cuidado continua."
 
 ## Premissa ética
 
@@ -129,3 +129,7 @@ Magenta é acento, nunca superfície. Espaço em branco generoso, ícones consis
 ---
 
 *Projeto conceitual. Prototipado com apoio de IA como acelerador de design e desenvolvimento.*
+
+
+## Setembro Amarelo 2026
+A campanha é a experiência inicial do case. As demais áreas do HUMAN ficam bloqueadas durante esta versão. A caixa de mensagens usa Supabase com RLS permitindo apenas INSERT anônimo.

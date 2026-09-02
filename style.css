@@ -1,5 +1,5 @@
 /* =====================================================================
-   HUMAN — Design System
+   HUMAN. Design System
    Tecnologia como meio. Cuidado como propósito.
    ===================================================================== */
 
@@ -20,7 +20,7 @@
   --accent-soft: rgba(214, 0, 111, .08);
   --accent-line: rgba(214, 0, 111, .22);
 
-  /* cor sazonal de apoio — Especial Setembro Amarelo, nunca substitui o acento principal */
+  /* cor sazonal de apoio. Especial Setembro Amarelo, nunca substitui o acento principal */
   --sa-yellow:      #E3A421;
   --sa-yellow-deep: #96690A;
   --sa-yellow-soft: rgba(227, 164, 33, .12);
@@ -761,7 +761,7 @@ ul, ol { list-style: none; padding: 0; }
 }
 .sa-recognition p { font-size: .95rem; line-height: 1.6; color: var(--ink-70); white-space: pre-line; }
 
-/* caça-palavras — Encontre em Você */
+/* caça-palavras. Encontre em Você */
 .sa-ws {
   display: grid; grid-template-columns: repeat(var(--sa-ws-size), 1fr); gap: 3px;
   max-width: 380px; margin: 20px auto 0;
@@ -817,7 +817,7 @@ ul, ol { list-style: none; padding: 0; }
 .sa-cal__cell.has-momentos:hover { background: var(--sa-yellow-line); }
 .sa-cal__heart { font-size: .68rem; }
 
-/* feedback — checkbox de consentimento */
+/* feedback. checkbox de consentimento */
 .sa-check { display: flex; align-items: flex-start; gap: 10px; font-size: .82rem; color: var(--ink-55); line-height: 1.4; }
 .sa-check input { margin-top: 3px; }
 
@@ -826,4 +826,35 @@ ul, ol { list-style: none; padding: 0; }
   .sa-cards { grid-template-columns: repeat(2, 1fr); }
   .sa-ws { max-width: 300px; gap: 2px; }
   .sa-ws__cell { font-size: .62rem; }
+}
+
+
+/* Setembro Amarelo 2026: foco da experiência */
+.sa-impact { margin: clamp(28px,5vw,56px) 0 0; max-width: 22ch; font-size: clamp(1.7rem,4vw,3.25rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 600; color: var(--navy); }
+.sa-impact--center { margin-left:auto; margin-right:auto; text-align:center; max-width:24ch; }
+.sa-impact--modal { font-size: clamp(1.35rem,3vw,2rem); margin-top:24px; }
+.sa-knowledge { width:100%; display:flex; align-items:center; gap:14px; text-align:left; padding:18px 20px; border:1px solid var(--sa-yellow-line); background:linear-gradient(90deg,var(--sa-yellow-soft),var(--surface)); border-radius:var(--r-lg); }
+.sa-knowledge > span:first-child { font-size:1.45rem; }
+.sa-knowledge > span:nth-child(2) { display:grid; gap:3px; flex:1; }
+.sa-knowledge b { font-size:1rem; color:var(--navy); }
+.sa-knowledge small { color:var(--ink-55); }
+.sa-time-only { gap:10px; margin-top:18px; }
+.sa-random { display:inline-flex; align-items:center; gap:9px; border:1px solid var(--line-strong); border-radius:999px; padding:12px 16px; background:var(--surface); font-size:.9rem; }
+.sa-cvv { display:grid; grid-template-columns:1.5fr auto; gap:24px; padding:clamp(24px,4vw,40px); background:#101B2F; color:white; border-radius:var(--r-xl); align-items:center; }
+.sa-cvv .h2,.sa-cvv .lead { color:white; }
+.sa-cvv__eyebrow { font-size:.7rem; letter-spacing:.12em; color:#F2C24F; font-weight:600; }
+.sa-cvv__number { display:grid; text-align:center; padding:16px 24px; border:1px solid rgba(255,255,255,.2); border-radius:var(--r-lg); }
+.sa-cvv__number span,.sa-cvv__number small { color:rgba(255,255,255,.72); }
+.sa-cvv__number strong { font-size:3.2rem; line-height:1; margin:5px 0; color:#F2C24F; }
+.sa-cvv__actions { grid-column:1/-1; display:flex; gap:10px; flex-wrap:wrap; }
+.sa-cvv .btn--ghost { color:white; border-color:rgba(255,255,255,.3); }
+.sa-locked { position:relative; min-height:130px; display:flex; flex-direction:column; gap:12px; align-items:flex-start; padding:20px; border:1px solid var(--line); border-radius:var(--r-lg); background:rgba(255,255,255,.55); opacity:.58; filter:saturate(.35); text-align:left; }
+.sa-locked .sa-lock { position:absolute; right:16px; top:16px; filter:none; }
+.sa-ws { touch-action:none; user-select:none; -webkit-user-select:none; }
+.sa-ws__cell { touch-action:none; }
+.sa-ws__cell.is-selecting { background:var(--accent-soft); border-color:var(--accent); color:var(--navy); transform:scale(.96); }
+@media(max-width:620px){
+  .sa-cvv{grid-template-columns:1fr}.sa-cvv__number{justify-self:stretch}.sa-cvv__actions{grid-column:1}.sa-cvv__actions .btn{flex:1;justify-content:center}
+  .sa-impact{font-size:2rem}.sa-knowledge{padding:16px}.sa-ws{max-width:330px}.sa-ws__cell{font-size:.68rem}
+  #saGrid.grid--3{grid-template-columns:1fr}.acard{min-height:0}
 }
