@@ -200,7 +200,7 @@
       fg.style.strokeDashoffset = String(213.6 * (1 - left / total));
       if (left <= 0) {
         clearInterval(modalTimer); modalTimer = null;
-        countEl.textContent = "âœ“";
+        countEl.textContent = "âœ¨";
         $("#tTitle", container).textContent = "Tempo concluÃ­do.";
         $("#tHint", container).textContent = "Obrigado por reservar esse tempo para vocÃª.";
         container.querySelector(".timer").classList.add("is-done");
@@ -947,7 +947,7 @@
         fg.style.strokeDashoffset = String(213.6 * (1 - left / total));
         if (left <= 0) {
           stop();
-          countEl.textContent = "âœ“";
+          countEl.textContent = "âœ¨";
           $("#pTitle").textContent = "Tempo concluÃ­do.";
           $("#pHint").textContent = "Obrigado por reservar esse tempo.";
           container.querySelector(".timer").classList.add("is-done");
@@ -1509,7 +1509,7 @@
               <span class="ico-tile ico-tile--sm">${icon((D.setembroAmarelo.experiencias.find((e) => e.id === m.id) || {}).icon || "heart")}</span>
               <span>
                 <span class="list-mini__t">${esc(saFmtHora(new Date(m.ts)))} Â· ${esc(m.titulo)}</span>
-                <span class="list-mini__m">${m.concluido ? "ConcluÃ­do" : "Interrompido. e vÃ¡lido do mesmo jeito"}${m.tempoFeito ? " Â· " + m.tempoFeito + " min" : ""}</span>
+                <span class="list-mini__m">${m.concluido ? "ConcluÃ­do" : "Interrompido, mas vÃ¡lido do mesmo jeito"}${m.tempoFeito ? " Â· " + m.tempoFeito + " min" : ""}</span>
               </span>
             </div>`).join("")}
         </div>`);
@@ -1519,13 +1519,12 @@
   }
 
   /* ---- Feedback ----
-     O HUMAN roda no GitHub Pages, sem servidor prÃ³prio: o feedback fica
-     salvo sÃ³ no localStorage deste navegador. Para receber de verdade,
-     conecte aqui um serviÃ§o como Supabase, Firebase (Firestore),
-     Formspree ou Google Sheets/Apps Script, enviando
-     { ts, nome, mensagem, publico } por fetch/POST. ComentÃ¡rio marcado
-     como pÃºblico exige moderaÃ§Ã£o antes de ir ao ar. nunca publique
-     automaticamente o que chega por aqui. */
+     Mensagem anÃ´nima (sem nome, e-mail ou identificaÃ§Ã£o). Enviada por
+     POST direto Ã  tabela "Mensagens" do Supabase via REST, usando a
+     chave publishable (segura para o navegador; a proteÃ§Ã£o real vem da
+     RLS, que libera apenas INSERT para "anon"). Se o envio falhar, a
+     mensagem fica guardada sÃ³ neste navegador, sem fingir que chegou
+     ao destino. */
   function mountSaFeedback() {
     const form = $("#saFeedbackForm");
     if (!form) return;
@@ -1539,6 +1538,7 @@
       btn.disabled = true;
       btn.textContent = "Enviando...";
       try {
+        if (typeof fetch !== "function") throw new Error("fetch indisponÃ­vel neste navegador");
         const res = await fetch(`${SUPABASE_URL}/rest/v1/Mensagens`, {
           method: "POST",
           headers: {
@@ -1555,7 +1555,10 @@
         $("#saFbConfirm").innerHTML = `<div class="sa-recognition mt-20"><p>${esc(D.setembroAmarelo.feedback.confirmacao)}</p></div>`;
       } catch (err) {
         console.error(err);
-        toast("NÃ£o foi possÃ­vel enviar agora. Tente novamente em alguns instantes.");
+        const backup = store.get("setembroFeedbackPendente", []);
+        backup.push({ ts: new Date().toISOString(), mensagem: msg });
+        store.set("setembroFeedbackPendente", backup);
+        toast("NÃ£o foi possÃ­vel enviar agora. Guardamos sua mensagem por aqui para tentar de novo mais tarde.");
         btn.disabled = false;
         btn.innerHTML = `${icon("send")} ${esc(D.setembroAmarelo.feedback.cta)}`;
       }
@@ -1579,7 +1582,7 @@
     <section class="section section--tight"><div class="wrap">
       <button class="sa-knowledge sa-knowledge--yellow" id="saWhy"><span>ðŸŽ—ï¸</span><span><b>${esc(SA.contexto.title)}</b><small>ConheÃ§a a histÃ³ria por trÃ¡s da fita amarela.</small></span>${arrow()}</button>
       <button class="sa-knowledge mt-12" id="saDidYouKnow"><span>âœ¨</span><span><b>VocÃª sabia?</b><small>ConheÃ§a acessos gratuitos de cuidado disponÃ­veis pelo SUS.</small></span>${arrow()}</button>
-      <button class="sa-cvv-card mt-12" id="saCvvQuick"><span class="sa-cvv-card__icon">â˜Ž</span><span><b>Precisa conversar? CVV 188</b><small>Escuta gratuita, sigilosa e disponÃ­vel 24 horas.</small></span>${arrow()}</button>
+      <button class="sa-cvv-card mt-12" id="saCvvQuick"><span class="sa-cvv-card__icon">ðŸ“ž</span><span><b>Precisa conversar? CVV 188</b><small>Escuta gratuita, sigilosa e disponÃ­vel 24 horas.</small></span>${arrow()}</button>
     </div></section>
 
     <section class="section section--tight" id="sa-banco"><div class="wrap">
@@ -1661,7 +1664,7 @@
       ? items.map((i, k) => `<button class="search-item${k === 0 ? " is-cursor" : ""}" data-k="${k}">
           <span class="ico-tile ico-tile--sm">${icon(i.icon)}</span>
           <span><span class="search-item__t">${esc(i.t)}</span><span class="search-item__m">${esc(i.m)}</span></span></button>`).join("")
-      : `<div class="search-empty">Nenhum resultado para â€œ${esc(searchInput.value)}â€.</div>`;
+      : `<div class="search-empty">Nenhum resultado para "${esc(searchInput.value)}â¬.</div>`;
     searchResults._items = items;
   }
 
