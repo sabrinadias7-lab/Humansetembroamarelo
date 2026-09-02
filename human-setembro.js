@@ -1577,7 +1577,7 @@
 
     function html() {
       return `
-        <span class="eyebrow eyebrow--accent">Você sabia? ✨</span>
+        <span class="eyebrow eyebrow--accent">Você sabia?</span>
         <h2 class="h2 mt-10">Caminhos gratuitos de cuidado</h2>
         <p class="lead mt-8">Três possibilidades públicas e gratuitas, com foco em saúde mental, acolhimento e bem-estar.</p>
         <div class="sa-know-list mt-16">
@@ -1623,27 +1623,26 @@
     <section class="hub-head sa-hero">
       <div class="wrap">
         <div class="hub-head__top">
-          <span class="ico-tile ico-tile--xl ico-tile--yellow">🎗️</span>
           <div><span class="sa-eyebrow">HUMAN | Setembro Amarelo</span><h1 class="h1 mt-6">Um tempo para cuidar de você ✨</h1><p class="lead mt-8">${esc(SA.entrada.text)}</p></div>
         </div>
-        <p class="sa-impact">Cuidar de você não precisa começar com uma grande mudança ✨</p>
+        <p class="sa-impact">Cuidar de você não precisa começar com uma grande mudança</p>
       </div>
     </section>
 
     <section class="section section--tight"><div class="wrap">
       <button class="sa-knowledge sa-knowledge--yellow" id="saWhy"><span>🎗️</span><span><b>${esc(SA.contexto.title)}</b><small>Conheça a história por trás da fita amarela.</small></span>${arrow()}</button>
-      <button class="sa-knowledge mt-12" id="saDidYouKnow"><span>✨</span><span><b>Você sabia?</b><small>Caminhos gratuitos de saúde mental e bem-estar.</small></span>${arrow()}</button>
+      <button class="sa-knowledge mt-12" id="saDidYouKnow"><span>${icon("spark")}</span><span><b>Você sabia?</b><small>Caminhos gratuitos de saúde mental e bem-estar.</small></span>${arrow()}</button>
       <button class="sa-cvv-card mt-12" id="saCvvQuick"><span class="sa-cvv-card__icon">📞</span><span><b>Precisa conversar? CVV 188</b><small>Escuta gratuita, sigilosa e disponível 24 horas.</small></span>${arrow()}</button>
     </div></section>
 
     <section class="section section--tight" id="sa-banco"><div class="wrap">
-      <div class="block-head"><div><span class="eyebrow">Um tempo para você</span><h2 class="h2 mt-8">Quanto tempo você tem para você hoje? ✨</h2><p class="lead mt-8">Escolha um tempo. O HUMAN sugere uma possibilidade de cada vez.</p></div></div>
+      <div class="block-head"><div><span class="eyebrow">Um tempo para você</span><h2 class="h2 mt-8">Quanto tempo você tem para você hoje?</h2><p class="lead mt-8">Escolha um tempo. O HUMAN sugere uma possibilidade de cada vez.</p></div></div>
       <div class="tagrow sa-time-only" id="saTimeFilters">${SA.filtrosTempo.map(t => `<button class="chip" data-time="${t.v}">${esc(t.label)}</button>`).join("")}</div>
       <div id="saSuggestion" class="mt-20"><div class="sa-gentle-empty">Escolha quanto tempo você tem e receba uma sugestão para agora.</div></div>
     </div></section>
 
     <section class="section section--tight section--alt" id="sa-jogos"><div class="wrap">
-      <p class="sa-impact sa-impact--center">Às vezes, cinco minutos já são um começo ✨</p>
+      <p class="sa-impact sa-impact--center">Às vezes, cinco minutos já são um começo</p>
       <div class="grid grid--4 grid--action reveal sa-games-grid">
         <button class="acard" id="saJogoEncontre"><span class="acard__top"><span class="ico-tile ico-tile--lg">${icon("search")}</span></span><span class="acard__t">${esc(SA.jogos.encontreEmVoce.titulo)}</span><span class="acard__d">Encontre palavras ligadas a cuidado, presença e conexão.</span><span class="acard__cta">Jogar ${arrow()}</span></button>
         <button class="acard" id="saJogoPote"><span class="acard__top"><span class="ico-tile ico-tile--lg">${icon("gift")}</span></span><span class="acard__t">${esc(SA.jogos.poteDasCoisasBoas.titulo)}</span><span class="acard__d">Guarde uma pequena coisa boa do seu dia.</span><span class="acard__cta">Abrir ${arrow()}</span></button>
@@ -1652,7 +1651,7 @@
       </div>
     </div></section>
 
-    <section class="section section--tight" id="sa-tempo"><div class="wrap"><button class="sa-calendar-launch" id="saOpenCalendar"><span>${icon("heart")}</span><span><b>Meu Tempo por Mim ✨</b><small>Abra seu calendário de momentos reservados para você.</small></span>${arrow()}</button><div id="saCalendario" hidden></div></div></section>
+    <section class="section section--tight" id="sa-tempo"><div class="wrap"><button class="sa-calendar-launch" id="saOpenCalendar"><span>${icon("heart")}</span><span><b>Meu Tempo por Mim</b><small>Abra seu calendário de momentos reservados para você.</small></span>${arrow()}</button><div id="saCalendario" hidden></div></div></section>
 
     <section class="section section--tight" id="sa-feedback"><div class="wrap"><div class="recog reveal"><div class="recog__left"><span class="ico-tile ico-tile--xl ico-tile--yellow">${icon("chat")}</span><span class="eyebrow eyebrow--accent mt-16" style="display:block">${esc(SA.feedback.eyebrow)}</span><h2 class="h2 mt-8">${esc(SA.feedback.title)}</h2><p class="lead mt-10">${esc(SA.feedback.text)}</p></div><form class="recog__form" id="saFeedbackForm" novalidate><label class="fld"><span>Mensagem anônima</span><textarea id="saFbMsg" rows="4" placeholder="${esc(SA.feedback.placeholderMsg)}" maxlength="500" required></textarea></label><button class="btn btn--yellow" type="submit">${icon("send")} ${esc(SA.feedback.cta)}</button><p class="fld__note">Este espaço não é um canal de atendimento ou emergência. A mensagem é armazenada anonimamente para demonstrar a funcionalidade deste case.</p></form></div><div id="saFbConfirm"></div></div></section>`;
   }
