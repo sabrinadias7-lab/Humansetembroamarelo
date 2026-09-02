@@ -879,3 +879,14 @@ ul, ol { list-style: none; padding: 0; }
 .footer-locked__card>span{font-size:1.3rem;opacity:.7}.footer-locked__card b{font-size:1rem}.footer-locked__card i{position:absolute;right:16px;top:16px;font-style:normal;font-size:.9rem;filter:grayscale(1);opacity:.8}
 .footer--locked-human .footer__bottom a{color:rgba(255,255,255,.78);text-decoration:underline;text-underline-offset:3px}
 @media(max-width:700px){.footer-locked__grid{grid-template-columns:repeat(2,1fr)}.footer-locked__card{min-height:104px;padding:17px}.footer--locked-human{padding-top:42px}}
+
+
+/* Setembro Amarelo - refinamento da experiência */
+.sa-knowledge--yellow{background:#F6D34A!important;border-color:#DDBA2E!important;color:#18243A}.sa-knowledge--yellow b,.sa-knowledge--yellow small{color:#18243A!important}
+.sa-cvv-card,.sa-calendar-launch{width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:18px 20px;border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);background:#101B2F;color:#fff}.sa-cvv-card>span:nth-child(2),.sa-calendar-launch>span:nth-child(2){display:grid;gap:3px;flex:1}.sa-cvv-card small{color:rgba(255,255,255,.72)}.sa-cvv-card__icon{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#F2C24F;color:#101B2F;font-size:1.1rem}.sa-cvv-card svg{color:#F2C24F}
+.sa-gentle-empty{padding:24px;border:1px dashed var(--line);border-radius:var(--r-lg);color:var(--ink-55);background:var(--surface)}
+.sa-single-suggestion{max-width:720px;padding:26px;border:1px solid var(--line);border-radius:var(--r-xl);background:var(--surface);box-shadow:var(--shadow-sm)}.sa-single-suggestion h3{font-size:1.45rem;margin:8px 0;color:var(--navy)}.sa-single-suggestion p{color:var(--ink-55);line-height:1.6}.sa-single-suggestion__actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.sa-calendar-launch{background:var(--surface);color:var(--navy);border-color:var(--line)}.sa-calendar-launch small{color:var(--ink-55)}.sa-calendar-launch>span:first-child{color:var(--accent)}
+.sa-history-modal{background:#F6D34A;margin:-4px;padding:24px;border-radius:20px;color:#18243A}.sa-history-modal .h2,.sa-history-modal .lead,.sa-history-modal .sa-impact{color:#18243A}.sa-history-ribbon{font-size:2rem;display:block;margin-bottom:10px}.sa-sus-list{display:grid;gap:10px;margin-top:18px}.sa-sus-list article{padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.sa-sus-list p{margin-top:5px;color:var(--ink-55);line-height:1.55}
+.nav-locked,.footer-case-lock{border:0;background:none;font:inherit;color:inherit;opacity:.55;cursor:not-allowed}.footer-case-lock{color:rgba(255,255,255,.62)}
+@media(max-width:700px){.sa-games-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px}.sa-games-grid .acard{min-width:0;padding:15px}.sa-games-grid .acard__d{font-size:.78rem}.sa-games-grid .acard__t{font-size:.9rem}.sa-single-suggestion__actions .btn{width:100%;justify-content:center}}
