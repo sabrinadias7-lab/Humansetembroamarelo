@@ -1,10 +1,10 @@
 /* =====================================================================
    HUMAN : icons.js
-   Biblioteca de Ã­cones em SVG (traÃ§o 1.7, grade 24, cantos arredondados)
+   Biblioteca de ícones em SVG (traço 1.7, grade 24, cantos arredondados)
    ===================================================================== */
 
 window.HUMAN_ICONS = {
-  /* dimensÃµes */
+  /* dimensões */
   mind:    '<path d="M9.5 3.2A4.3 4.3 0 004.7 7.5c0 .9-1.2 1.5-1.2 3a2.9 2.9 0 002 2.7v2.3a3 3 0 003 3h1v2.3"/><path d="M14.5 3.2a4.3 4.3 0 014.8 4.3c0 .9 1.2 1.5 1.2 3a2.9 2.9 0 01-2 2.7v2.3a3 3 0 01-3 3h-1v2.3"/><path d="M12 3.4v17"/>',
   body:    '<circle cx="12" cy="4.4" r="2"/><path d="M5.5 9.2h13M12 9.2v5.6M12 14.8l-3 6.2M12 14.8l3 6.2"/>',
   connect: '<circle cx="6.5" cy="7" r="2.5"/><circle cx="17.5" cy="7" r="2.5"/><path d="M2.6 20c0-3 1.7-5 3.9-5s3.9 2 3.9 5M13.6 20c0-3 1.7-5 3.9-5s3.9 2 3.9 5M9.2 8.3h5.6"/>',
@@ -53,7 +53,7 @@ window.HUMAN_ICONS = {
   desk:    '<path d="M3 9.4h18M4.6 9.4v11M19.4 9.4v11M4.6 4.6h14.8v4.8H4.6z"/>',
   leaf:    '<path d="M20.4 3.8C11.6 3.8 5 7.4 5 14.6a5.8 5.8 0 001.6 4c4.4-6.6 8-8.2 8-8.2s-3.4 2.4-6.4 9c6.8 1.6 12.2-2.6 12.2-15.6z"/>',
 
-  /* conexÃµes */
+  /* conexões */
   users:   '<circle cx="9.4" cy="7.4" r="3"/><path d="M3.4 20.4c0-3.6 2.6-6.2 6-6.2s6 2.6 6 6.2"/><path d="M16.4 5.2a3 3 0 010 5.8M17.4 14.6c2.2.6 3.6 2.8 3.6 5.8"/>',
   coffee:  '<path d="M4.4 8.4h12.2v6a4.4 4.4 0 01-4.4 4.4H8.8a4.4 4.4 0 01-4.4-4.4z"/><path d="M16.6 10h1.6a2.4 2.4 0 010 4.8h-1.6M4.4 21.4h12.2"/><path d="M8.4 3v2.4M12.6 3v2.4"/>',
   compass: '<circle cx="12" cy="12" r="8.6"/><path d="M15.4 8.6l-2 5.4-5.4 2 2-5.4z"/>',
@@ -69,7 +69,7 @@ window.HUMAN_ICONS = {
   globe:   '<circle cx="12" cy="12" r="8.6"/><path d="M3.6 12h16.8M12 3.4c2.2 2.4 3.4 5.4 3.4 8.6s-1.2 6.2-3.4 8.6c-2.2-2.4-3.4-5.4-3.4-8.6S9.8 5.8 12 3.4z"/>',
   chip:    '<rect x="6.4" y="6.4" width="11.2" height="11.2" rx="2"/><path d="M9.6 3.2v3.2M14.4 3.2v3.2M9.6 17.6v3.2M14.4 17.6v3.2M3.2 9.6h3.2M3.2 14.4h3.2M17.6 9.6h3.2M17.6 14.4h3.2"/>',
 
-  /* benefÃ­cios */
+  /* benefícios */
   cross:   '<rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4"/><path d="M12 8v8M8 12h8"/>',
   phone:   '<path d="M7.4 3.6h9.2v16.8H7.4z" /><path d="M10.6 17.6h2.8"/>',
   tooth:   '<path d="M7.4 3.6c1.6 0 2.2.8 4.6.8s3-.8 4.6-.8c2 0 3 1.6 3 4 0 3-1.4 3.6-2 7-.5 2.8-.8 5.8-2.2 5.8-1.6 0-1.4-4.4-3.4-4.4s-1.8 4.4-3.4 4.4c-1.4 0-1.7-3-2.2-5.8-.6-3.4-2-4-2-7 0-2.4 1-4 3-4z"/>',
@@ -82,16 +82,16 @@ window.HUMAN_ICONS = {
   laptop:  '<rect x="4.4" y="5" width="15.2" height="10.4" rx="1.8"/><path d="M2.6 18.8h18.8"/>',
   scale:   '<path d="M12 4v16M6.4 20.4h11.2M4 8.6h16"/><path d="M4 8.6l-2.4 5.2h4.8zM20 8.6l-2.4 5.2h4.8z"/>',
 
-  /* clima e perÃ­odos */
+  /* clima e períodos */
   sun:     '<circle cx="12" cy="12" r="4.4"/><path d="M12 2.6v2.4M12 19v2.4M21.4 12H19M5 12H2.6M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7M18.6 18.6l-1.7-1.7M7.1 7.1L5.4 5.4"/>',
   cloud:   '<path d="M7.4 18.4a4.4 4.4 0 01-.5-8.8 5.6 5.6 0 0110.8 1.2 3.8 3.8 0 01-.7 7.6z"/>'
 };
 
 /* =====================================================================
-   ExtensÃ£o : Especial Setembro Amarelo
-   Ãcones adicionais, no mesmo padrÃ£o (traÃ§o 1.7, grade 24).
-   Mantidos separados do objeto original para nÃ£o tocar no conteÃºdo
-   jÃ¡ existente do HUMAN.
+   Extensão : Especial Setembro Amarelo
+   Ícones adicionais, no mesmo padrão (traço 1.7, grade 24).
+   Mantidos separados do objeto original para não tocar no conteúdo
+   já existente do HUMAN.
    ===================================================================== */
 Object.assign(window.HUMAN_ICONS, {
   music:   '<path d="M9.4 17.4V5.6l10-2v11.8"/><circle cx="7" cy="18.4" r="2.6"/><circle cx="17" cy="16.4" r="2.6"/>',

@@ -1,8 +1,8 @@
 /* =====================================================================
    HUMAN. script.js
    SPA sem framework: roteamento por hash, hubs interativos,
-   prÃ¡ticas com timer, checklist de ergonomia, reconhecimento,
-   busca global, lista pessoal e microinteraÃ§Ãµes.
+   práticas com timer, checklist de ergonomia, reconhecimento,
+   busca global, lista pessoal e microinterações.
    ===================================================================== */
 
 (function () {
@@ -16,7 +16,7 @@
 
 
   /* ==================================================================
-     1. UTILITÃRIOS
+     1. UTILITÁRIOS
      ================================================================== */
   const $  = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -39,7 +39,7 @@
     set(k, v) { try { localStorage.setItem("human:" + k, JSON.stringify(v)); } catch (e) { /* silencioso */ } }
   };
 
-  /* Ãndice de todos os itens navegÃ¡veis dos hubs */
+  /* Índice de todos os itens navegáveis dos hubs */
   const ITEMS = {};
   (function indexItems() {
     Object.keys(D.hubs).forEach((hubId) => {
@@ -97,18 +97,18 @@
     const items = saved.map((id) => ITEMS[id]).filter(Boolean);
     openModal(`
       <span class="eyebrow eyebrow--accent">Minha lista</span>
-      <h2 class="h2 mt-12">${items.length ? "Guardado para depois" : "Sua lista estÃ¡ vazia"}</h2>
+      <h2 class="h2 mt-12">${items.length ? "Guardado para depois" : "Sua lista está vazia"}</h2>
       ${items.length
         ? `<div class="list-mini mt-20">${items.map((it) => `
             <button class="list-mini__row" data-item="${it.id}">
               <span class="ico-tile ico-tile--sm">${icon(it.icon)}</span>
               <span>
                 <span class="list-mini__t">${esc(it.title)}</span>
-                <span class="list-mini__m">${esc(it.type)}${it.minutes ? " Â· " + it.minutes + " min" : ""}</span>
+                <span class="list-mini__m">${esc(it.type)}${it.minutes ? " · " + it.minutes + " min" : ""}</span>
               </span>
               ${arrow()}
             </button>`).join("")}</div>`
-        : `<p class="lead mt-12">Use o Ã­cone de marcador nos conteÃºdos para guardar o que quiser ver depois.</p>`}
+        : `<p class="lead mt-12">Use o ícone de marcador nos conteúdos para guardar o que quiser ver depois.</p>`}
     `);
   }
 
@@ -136,7 +136,7 @@
     if (e.target === modal || e.target.closest("[data-close]")) closeModal();
   });
 
-  /* ---- ficha de item (prÃ¡tica, conteÃºdo ou recurso) ---- */
+  /* ---- ficha de item (prática, conteúdo ou recurso) ---- */
   function openItem(id) {
     const it = ITEMS[id];
     if (!it) return;
@@ -146,7 +146,7 @@
       <div class="modal__head">
         <span class="ico-tile ico-tile--accent">${icon(it.icon)}</span>
         <span>
-          <span class="eyebrow eyebrow--accent">${esc(it.type)}${it.minutes ? " Â· " + it.minutes + " min" : ""}</span>
+          <span class="eyebrow eyebrow--accent">${esc(it.type)}${it.minutes ? " · " + it.minutes + " min" : ""}</span>
           <h2 class="h2 mt-6">${esc(it.title)}</h2>
         </span>
       </div>
@@ -161,18 +161,18 @@
         <button class="btn btn--ghost${isSaved(it.id) ? " is-on" : ""}" data-save="${it.id}">${icon("bookmark")} Salvar</button>
       </div>
       <div id="mTimer"></div>
-      <p class="modal__note">ConteÃºdo fictÃ­cio deste protÃ³tipo. Em um ambiente real, este botÃ£o levaria direto Ã  plataforma ou ao canal responsÃ¡vel.</p>
+      <p class="modal__note">Conteúdo fictício deste protótipo. Em um ambiente real, este botão levaria direto à plataforma ou ao canal responsável.</p>
     `);
 
     if ($("#mStart")) $("#mStart").addEventListener("click", () => runTimer($("#mTimer"), it.minutes, it.title));
-    if ($("#mOpen")) $("#mOpen").addEventListener("click", () => toast("ConteÃºdo fictÃ­cio do protÃ³tipo."));
+    if ($("#mOpen")) $("#mOpen").addEventListener("click", () => toast("Conteúdo fictício do protótipo."));
   }
 
-  /* ---- timer reutilizÃ¡vel ----
-     onFinish(completed, secondsDone) Ã© opcional: chamado tanto quando o
+  /* ---- timer reutilizável ----
+     onFinish(completed, secondsDone) é opcional: chamado tanto quando o
      tempo termina naturalmente (completed = true) quanto quando a pessoa
      encerra antes (completed = false). Usado pelo Especial Setembro
-     Amarelo para registrar o momento sem duplicar a lÃ³gica do cronÃ´metro. */
+     Amarelo para registrar o momento sem duplicar a lógica do cronômetro. */
   function runTimer(container, minutes, label, onFinish) {
     if (modalTimer) clearInterval(modalTimer);
     const total = minutes * 60;
@@ -200,11 +200,11 @@
       fg.style.strokeDashoffset = String(213.6 * (1 - left / total));
       if (left <= 0) {
         clearInterval(modalTimer); modalTimer = null;
-        countEl.textContent = "âœ¨";
-        $("#tTitle", container).textContent = "Tempo concluÃ­do.";
-        $("#tHint", container).textContent = "Obrigado por reservar esse tempo para vocÃª.";
+        countEl.textContent = "✨";
+        $("#tTitle", container).textContent = "Tempo concluído.";
+        $("#tHint", container).textContent = "Obrigado por reservar esse tempo para você.";
         container.querySelector(".timer").classList.add("is-done");
-        toast("Pausa concluÃ­da.", "ok");
+        toast("Pausa concluída.", "ok");
         if (onFinish) onFinish(true, total);
       }
       left--;
@@ -218,7 +218,7 @@
     });
   }
 
-  /* ---- ficha de benefÃ­cio ---- */
+  /* ---- ficha de benefício ---- */
   function openBenefit(id) {
     const b = D.benefits.find((x) => x.id === id);
     if (!b) return;
@@ -233,18 +233,18 @@
       <div class="def mt-22">
         <div class="def__row"><span class="def__k">${icon("target")} Para que serve</span><p>${esc(b.forWhat)}</p></div>
         <div class="def__row"><span class="def__k">${icon("compass")} Como acessar</span><p>${esc(b.how)}</p></div>
-        ${b.support ? `<div class="def__row"><span class="def__k">${icon("shieldCheck")} Confidencial</span><p>O acesso Ã© sigiloso e nÃ£o passa pela sua lideranÃ§a.</p></div>` : ""}
+        ${b.support ? `<div class="def__row"><span class="def__k">${icon("shieldCheck")} Confidencial</span><p>O acesso é sigiloso e não passa pela sua liderança.</p></div>` : ""}
       </div>
       <div class="modal__actions">
         <button class="btn btn--accent" id="bGo">Ver como acessar ${arrow()}</button>
         <a class="btn btn--ghost" href="#/beneficios" data-close>Ver todos</a>
       </div>
-      <p class="modal__note">BenefÃ­cio fictÃ­cio, criado para demonstrar o padrÃ£o do HUMAN: o que Ã©, para que serve e como acessar.</p>
+      <p class="modal__note">Benefício fictício, criado para demonstrar o padrão do HUMAN: o que é, para que serve e como acessar.</p>
     `);
-    $("#bGo").addEventListener("click", () => toast("Em produÃ§Ã£o, este botÃ£o abriria o portal do benefÃ­cio."));
+    $("#bGo").addEventListener("click", () => toast("Em produção, este botão abriria o portal do benefício."));
   }
 
-  /* ---- delegaÃ§Ã£o global de cliques ---- */
+  /* ---- delegação global de cliques ---- */
   document.addEventListener("click", (e) => {
     const save = e.target.closest("[data-save]");
     if (save) { e.stopPropagation(); toggleSaved(save.dataset.save); return; }
@@ -293,7 +293,7 @@
         </span>
         <span class="acard__t">${esc(it.title)}</span>
         <span class="acard__d">${esc(it.text)}</span>
-        <span class="acard__cta">${esc(it.cta || "ComeÃ§ar")} ${arrow()}</span>
+        <span class="acard__cta">${esc(it.cta || "Começar")} ${arrow()}</span>
       </button>`;
   }
 
@@ -301,7 +301,7 @@
     return `
       <article class="ccard">
         <button class="ccard__main" data-item="${it.id}">
-          <span class="ccard__meta">${icon(it.icon)} ${esc(it.type)}${it.minutes ? " Â· " + it.minutes + " min" : ""}</span>
+          <span class="ccard__meta">${icon(it.icon)} ${esc(it.type)}${it.minutes ? " · " + it.minutes + " min" : ""}</span>
           <span class="ccard__t">${esc(it.title)}</span>
           <span class="ccard__d">${esc(it.text)}</span>
           <span class="ccard__cta">${esc(it.cta || "Abrir")} ${arrow()}</span>
@@ -318,7 +318,7 @@
     return `
       <section class="hub-head">
         <div class="wrap">
-          <nav class="crumbs"><a href="#/">InÃ­cio</a><span>/</span><span>${esc(dimName(id))}</span></nav>
+          <nav class="crumbs"><a href="#/">Início</a><span>/</span><span>${esc(dimName(id))}</span></nav>
           <div class="hub-head__top">
             <span class="ico-tile ico-tile--xl ico-tile--accent">${icon(hub.icon)}</span>
             <div>
@@ -341,14 +341,14 @@
     const list = [];
     (hub.blocks || []).forEach((b) => list.push({ id: "b-" + b.id, label: b.label, icon: b.icon }));
     if (id === "mente") list.push({ id: "b-apoio", label: "Preciso de apoio", icon: "shield" });
-    if (id === "corpo") list.push({ id: "b-ergo", label: "Ergonomia", icon: "chair" }, { id: "b-cont", label: "ConteÃºdos", icon: "book" });
-    if (id === "conexoes") list.push({ id: "b-hist", label: "HistÃ³rias", icon: "chat" }, { id: "b-rec", label: "ReconheÃ§a alguÃ©m", icon: "heart" }, { id: "b-ideias", label: "Ideias", icon: "spark" });
+    if (id === "corpo") list.push({ id: "b-ergo", label: "Ergonomia", icon: "chair" }, { id: "b-cont", label: "Conteúdos", icon: "book" });
+    if (id === "conexoes") list.push({ id: "b-hist", label: "Histórias", icon: "chat" }, { id: "b-rec", label: "Reconheça alguém", icon: "heart" }, { id: "b-ideias", label: "Ideias", icon: "spark" });
     if (id === "aprender") list.push({ id: "b-plat", label: "Quero me desenvolver", icon: "cap" });
     return list.map((j) => `<button class="jump" data-jump="${j.id}">${icon(j.icon)} ${esc(j.label)}</button>`).join("");
   }
 
   /* ==================================================================
-     6. VIEW Â· HOME
+     6. VIEW · HOME
      ================================================================== */
   function viewHome() {
     const highlights = D.benefits.filter((b) => b.highlight).slice(0, 4);
@@ -359,12 +359,12 @@
       <div class="wrap hero__inner">
         <div class="hero__brand">
           <h1 class="hero__word">HU<span>M</span>AN</h1>
-          <p class="hero__concept">Tecnologia como meio.<br>Cuidado como propÃ³sito.</p>
+          <p class="hero__concept">Tecnologia como meio.<br>Cuidado como propósito.</p>
         </div>
         <p class="lead hero__purpose">${esc(D.brand.purpose)}</p>
         <div class="hero__meta">
-          <span class="pill">${icon("grid")} 6 dimensÃµes</span>
-          <span class="pill">${icon("gift")} ${D.benefits.length} benefÃ­cios</span>
+          <span class="pill">${icon("grid")} 6 dimensões</span>
+          <span class="pill">${icon("gift")} ${D.benefits.length} benefícios</span>
           <span class="pill">${icon("clock")} Pausas de 2 a 15 min</span>
         </div>
       </div>
@@ -373,7 +373,7 @@
     <section class="wrap question">
       <div class="reveal">
         <span class="eyebrow eyebrow--accent">Comece por aqui</span>
-        <h2 class="h1 question__title">O que vocÃª <em>precisa</em> hoje?</h2>
+        <h2 class="h1 question__title">O que você <em>precisa</em> hoje?</h2>
       </div>
       <div class="needs reveal">
         ${D.needs.map((n) => `
@@ -402,9 +402,9 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">Para vocÃª hoje</span>
-            <h2 class="h2 mt-10">Pequenas aÃ§Ãµes que cabem no seu dia</h2>
-            <p class="lead">SugestÃµes rÃ¡pidas que levam poucos minutos.</p>
+            <span class="eyebrow">Para você hoje</span>
+            <h2 class="h2 mt-10">Pequenas ações que cabem no seu dia</h2>
+            <p class="lead">Sugestões rápidas que levam poucos minutos.</p>
           </div>
           <a class="link-arrow" href="#/pausa">Ver 5 Minutos Para Mim ${arrow()}</a>
         </div>
@@ -422,9 +422,9 @@
     <section class="section section--tight">
       <div class="wrap">
         <div class="feature-strip reveal">
-          <span class="eyebrow">ConheÃ§a seus benefÃ­cios</span>
-          <h2 class="h2 mt-12" style="max-width:18ch">VocÃª tem mais do que imagina.</h2>
-          <p class="lead mt-14" style="max-width:46ch">O que Ã©, para que serve e como acessar. Em uma tela sÃ³.</p>
+          <span class="eyebrow">Conheça seus benefícios</span>
+          <h2 class="h2 mt-12" style="max-width:18ch">Você tem mais do que imagina.</h2>
+          <p class="lead mt-14" style="max-width:46ch">O que é, para que serve e como acessar. Em uma tela só.</p>
           <div class="grid grid--4 mt-32">
             ${highlights.map((b) => `
               <button class="bmini" data-benefit="${b.id}">
@@ -434,7 +434,7 @@
                 <span class="bmini__d">${esc(b.short)}</span>
               </button>`).join("")}
           </div>
-          <div class="mt-30"><a class="btn btn--accent" href="#/beneficios">Ver todos os benefÃ­cios ${arrow()}</a></div>
+          <div class="mt-30"><a class="btn btn--accent" href="#/beneficios">Ver todos os benefícios ${arrow()}</a></div>
         </div>
       </div>
     </section>
@@ -444,7 +444,7 @@
         <div class="section-head reveal">
           <div>
             <span class="eyebrow">O ecossistema</span>
-            <h2 class="h2 mt-10">Seis dimensÃµes, uma experiÃªncia</h2>
+            <h2 class="h2 mt-10">Seis dimensões, uma experiência</h2>
           </div>
         </div>
         <div class="dims reveal">
@@ -464,9 +464,9 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">5 minutos para vocÃª</span>
-            <h2 class="h2 mt-10">Quanto tempo vocÃª tem agora?</h2>
-            <p class="lead">Escolha o tempo e receba uma sugestÃ£o.</p>
+            <span class="eyebrow">5 minutos para você</span>
+            <h2 class="h2 mt-10">Quanto tempo você tem agora?</h2>
+            <p class="lead">Escolha o tempo e receba uma sugestão.</p>
           </div>
         </div>
         <div class="time-picker time-picker--home reveal">
@@ -479,10 +479,10 @@
       <div class="wrap">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">HistÃ³rias que conectam</span>
-            <h2 class="h2 mt-10">Pessoas que encontraram o que jÃ¡ existia</h2>
+            <span class="eyebrow">Histórias que conectam</span>
+            <h2 class="h2 mt-10">Pessoas que encontraram o que já existia</h2>
           </div>
-          <a class="link-arrow" href="#/dimensao/conexoes">Ver mais histÃ³rias ${arrow()}</a>
+          <a class="link-arrow" href="#/dimensao/conexoes">Ver mais histórias ${arrow()}</a>
         </div>
         <div class="grid grid--4 reveal">
           ${D.stories.slice(0, 4).map(storyCard).join("")}
@@ -495,8 +495,8 @@
         <div class="case-teaser reveal">
           <div>
             <span class="eyebrow eyebrow--accent">Sobre o projeto</span>
-            <h2 class="h2 mt-12">De estratÃ©gia de RH a produto digital</h2>
-            <p class="lead mt-12" style="max-width:44ch">O raciocÃ­nio por trÃ¡s da experiÃªncia, em uma pÃ¡gina.</p>
+            <h2 class="h2 mt-12">De estratégia de RH a produto digital</h2>
+            <p class="lead mt-12" style="max-width:44ch">O raciocínio por trás da experiência, em uma página.</p>
             <div class="mt-24"><a class="btn btn--primary" href="#/case">Ver o case ${arrow()}</a></div>
           </div>
           <div class="flow">
@@ -526,7 +526,7 @@
   }
 
   /* ==================================================================
-     7. VIEW Â· HUBS
+     7. VIEW · HUBS
      ================================================================== */
   function viewHub(id) {
     const hub = D.hubs[id];
@@ -598,7 +598,7 @@
               <span class="ring__v" id="ergoV">0/5</span>
             </div>
             <p class="ergo__msg" id="ergoMsg">${esc(e.results.low)}</p>
-            <button class="btn btn--ghost btn--sm" id="ergoReset">RecomeÃ§ar</button>
+            <button class="btn btn--ghost btn--sm" id="ergoReset">Recomeçar</button>
           </aside>
         </div>
       </div>
@@ -609,7 +609,7 @@
     return `
     <section class="section section--tight" id="b-cont">
       <div class="wrap">
-        ${blockHead({ label: "ConteÃºdos", hint: "Sono, movimento, ergonomia e energia", icon: "book" })}
+        ${blockHead({ label: "Conteúdos", hint: "Sono, movimento, ergonomia e energia", icon: "book" })}
         <div class="grid grid--4 reveal">${items.map(contentCard).join("")}</div>
       </div>
     </section>`;
@@ -619,7 +619,7 @@
     return `
     <section class="section section--tight" id="b-hist">
       <div class="wrap">
-        ${blockHead({ label: "HistÃ³rias que conectam", hint: "Relatos curtos de quem trabalha aqui", icon: "chat" })}
+        ${blockHead({ label: "Histórias que conectam", hint: "Relatos curtos de quem trabalha aqui", icon: "chat" })}
         <div class="grid grid--3 reveal">${D.stories.map(storyCard).join("")}</div>
       </div>
     </section>
@@ -630,7 +630,7 @@
           <div class="recog__left">
             <span class="ico-tile ico-tile--xl ico-tile--accent">${icon("heart")}</span>
             <h2 class="h2 mt-16">Quem tornou sua semana melhor?</h2>
-            <p class="lead mt-10">Reconhecimento especÃ­fico vale mais que elogio genÃ©rico.</p>
+            <p class="lead mt-10">Reconhecimento específico vale mais que elogio genérico.</p>
             <ul class="ticks mt-18">
               <li>${icon("check")} Diga o que a pessoa fez</li>
               <li>${icon("check")} Diga qual foi o efeito</li>
@@ -647,12 +647,12 @@
               <textarea id="recMsg" rows="3" placeholder="O que essa pessoa fez e o que mudou" maxlength="180" required></textarea>
               <i class="fld__count" id="recCount">0/180</i>
             </label>
-            <button class="btn btn--accent" type="submit">${icon("send")} Reconhecer alguÃ©m</button>
-            <p class="fld__note">InteraÃ§Ã£o demonstrativa. Nada Ã© enviado para fora do seu navegador.</p>
+            <button class="btn btn--accent" type="submit">${icon("send")} Reconhecer alguém</button>
+            <p class="fld__note">Interação demonstrativa. Nada é enviado para fora do seu navegador.</p>
           </form>
         </div>
         <div class="mural" id="mural" hidden>
-          <span class="eyebrow">Mural desta sessÃ£o</span>
+          <span class="eyebrow">Mural desta sessão</span>
           <div class="mural__grid" id="muralGrid"></div>
         </div>
       </div>
@@ -660,7 +660,7 @@
 
     <section class="section section--tight" id="b-ideias">
       <div class="wrap">
-        ${blockHead({ label: "Ideias para se conectar", hint: "Escolha uma e faÃ§a ainda hoje", icon: "spark" })}
+        ${blockHead({ label: "Ideias para se conectar", hint: "Escolha uma e faça ainda hoje", icon: "spark" })}
         <div class="grid grid--4 grid--action reveal">${hub.ideas.map(actionCard).join("")}</div>
       </div>
     </section>
@@ -723,7 +723,7 @@
       b.classList.toggle("is-on", marks[k]);
       b.setAttribute("aria-pressed", String(marks[k]));
       paint();
-      if (marks.every(Boolean)) toast("EspaÃ§o ajustado. Bom trabalho.", "ok");
+      if (marks.every(Boolean)) toast("Espaço ajustado. Bom trabalho.", "ok");
     });
 
     $("#ergoReset").addEventListener("click", () => {
@@ -767,29 +767,29 @@
 
     document.addEventListener("click", (e) => {
       const g = e.target.closest("[data-group]");
-      if (g) toast(`VocÃª entrou no grupo ${g.dataset.group}.`, "ok");
+      if (g) toast(`Você entrou no grupo ${g.dataset.group}.`, "ok");
     });
   }
 
   /* ==================================================================
-     8. VIEW Â· BENEFÃCIOS
+     8. VIEW · BENEFÍCIOS
      ================================================================== */
   function viewBenefits() {
     return `
     <section class="hub-head">
       <div class="wrap">
-        <nav class="crumbs"><a href="#/">InÃ­cio</a><span>/</span><span>Meus BenefÃ­cios</span></nav>
+        <nav class="crumbs"><a href="#/">Início</a><span>/</span><span>Meus Benefícios</span></nav>
         <div class="hub-head__top">
           <span class="ico-tile ico-tile--xl ico-tile--accent">${icon("gift")}</span>
           <div>
-            <h1 class="h1">Qual benefÃ­cio vocÃª procura?</h1>
-            <p class="lead mt-8">O que Ã©, para que serve e como acessar.</p>
+            <h1 class="h1">Qual benefício você procura?</h1>
+            <p class="lead mt-8">O que é, para que serve e como acessar.</p>
           </div>
         </div>
         <div class="toolbar">
           <div class="field">
             ${icon("search")}
-            <input type="text" id="benQ" placeholder="Buscar benefÃ­cio" autocomplete="off">
+            <input type="text" id="benQ" placeholder="Buscar benefício" autocomplete="off">
           </div>
           <div class="tagrow" id="benFilters"></div>
           <span class="toolbar__count" id="benCount"></span>
@@ -830,7 +830,7 @@
         </button>`).join("")
         : `<div class="empty" style="grid-column:1/-1"><b>Nada encontrado.</b>Ajuste a busca ou escolha outra categoria.</div>`;
 
-      $("#benCount").textContent = `${items.length} ${items.length === 1 ? "benefÃ­cio" : "benefÃ­cios"}`;
+      $("#benCount").textContent = `${items.length} ${items.length === 1 ? "benefício" : "benefícios"}`;
       observeReveal();
     }
 
@@ -846,15 +846,15 @@
   }
 
   /* ==================================================================
-     9. VIEW Â· 5 MINUTOS PARA MIM
+     9. VIEW · 5 MINUTOS PARA MIM
      ================================================================== */
   function viewPause() {
     return `
     <section class="hub-head hub-head--center">
       <div class="wrap">
-        <nav class="crumbs crumbs--center"><a href="#/">InÃ­cio</a><span>/</span><span>5 Minutos Para Mim</span></nav>
+        <nav class="crumbs crumbs--center"><a href="#/">Início</a><span>/</span><span>5 Minutos Para Mim</span></nav>
         <span class="ico-tile ico-tile--xl ico-tile--accent mx-auto mt-20">${icon("clock")}</span>
-        <h1 class="h1 mt-18">Quanto tempo vocÃª tem agora?</h1>
+        <h1 class="h1 mt-18">Quanto tempo você tem agora?</h1>
         <p class="lead mt-10">Escolha o tempo e veja o que cabe nele.</p>
         <div class="time-picker" id="timePicker">
           ${D.pauseOptions.map((t) => `<button class="time-opt" data-time="${t}"><b>${t}</b><span>min</span></button>`).join("")}
@@ -885,7 +885,7 @@
           ${list.map((p, i) => `
             <button class="pcard pcard--pause" data-pause="${i}">
               <span class="ico-tile ico-tile--lg">${icon(p.icon)}</span>
-              <span class="pcard__type">${esc(p.kind)} Â· ${t} min</span>
+              <span class="pcard__type">${esc(p.kind)} · ${t} min</span>
               <span class="pcard__t">${esc(p.title)}</span>
               <span class="pcard__d">${esc(p.text)}</span>
               <span class="acard__cta">Fazer agora ${arrow()}</span>
@@ -903,7 +903,7 @@
         <div class="pause-card">
           <div class="pause-card__head">
             <span class="ico-tile ico-tile--accent">${icon(p.icon)}</span>
-            <span class="eyebrow eyebrow--accent">${esc(p.kind)} Â· ${t} minutos</span>
+            <span class="eyebrow eyebrow--accent">${esc(p.kind)} · ${t} minutos</span>
           </div>
           <h2 class="h2 mt-14">${esc(p.title)}</h2>
           <p class="pause-card__text">${esc(p.text)}</p>
@@ -947,11 +947,11 @@
         fg.style.strokeDashoffset = String(213.6 * (1 - left / total));
         if (left <= 0) {
           stop();
-          countEl.textContent = "âœ¨";
-          $("#pTitle").textContent = "Tempo concluÃ­do.";
+          countEl.textContent = "✨";
+          $("#pTitle").textContent = "Tempo concluído.";
           $("#pHint").textContent = "Obrigado por reservar esse tempo.";
           container.querySelector(".timer").classList.add("is-done");
-          toast("Pausa concluÃ­da.", "ok");
+          toast("Pausa concluída.", "ok");
         }
         left--;
       };
@@ -984,7 +984,7 @@
       }
       const n = D.pauses[t].length;
       renderDetail(t, Math.floor(Math.random() * n));
-      toast("SugestÃ£o sorteada para vocÃª.", "ok");
+      toast("Sugestão sorteada para você.", "ok");
     });
 
     const initial = preset && D.pauses[preset] ? Number(preset) : 5;
@@ -993,18 +993,18 @@
   }
 
   /* ==================================================================
-     10. VIEW Â· APOIO
+     10. VIEW · APOIO
      ================================================================== */
   function viewSupport() {
     return `
     <section class="hub-head">
       <div class="wrap">
-        <nav class="crumbs"><a href="#/">InÃ­cio</a><span>/</span><span>Apoio</span></nav>
+        <nav class="crumbs"><a href="#/">Início</a><span>/</span><span>Apoio</span></nav>
         <div class="hub-head__top">
           <span class="ico-tile ico-tile--xl ico-tile--accent">${icon("shield")}</span>
           <div>
-            <h1 class="h1">VocÃª nÃ£o precisa resolver sozinho</h1>
-            <p class="lead mt-8">Canais confidenciais, sem passar pela lideranÃ§a.</p>
+            <h1 class="h1">Você não precisa resolver sozinho</h1>
+            <p class="lead mt-8">Canais confidenciais, sem passar pela liderança.</p>
           </div>
         </div>
       </div>
@@ -1023,13 +1023,13 @@
 
       <div class="note-line note-line--accent mt-32">
         ${icon("info")}
-        <p>${esc(D.brand.disclaimer)} Em caso de risco imediato, procure atendimento de emergÃªncia ou o canal de acolhimento 24h.</p>
+        <p>${esc(D.brand.disclaimer)} Em caso de risco imediato, procure atendimento de emergência ou o canal de acolhimento 24h.</p>
       </div>
 
       <div class="section-head mt-48">
         <div>
-          <span class="eyebrow">TambÃ©m pode ajudar</span>
-          <h2 class="h2 mt-10">ConteÃºdos de apoio nÃ£o clÃ­nico</h2>
+          <span class="eyebrow">Também pode ajudar</span>
+          <h2 class="h2 mt-10">Conteúdos de apoio não clínico</h2>
         </div>
         <a class="link-arrow" href="#/dimensao/mente">Ver o hub Mente ${arrow()}</a>
       </div>
@@ -1040,18 +1040,18 @@
   }
 
   /* ==================================================================
-     11. VIEW Â· CASE
+     11. VIEW · CASE
      ================================================================== */
   function viewCase() {
     const c = D.caseStudy;
     return `
     <section class="hub-head">
       <div class="wrap">
-        <nav class="crumbs"><a href="#/">InÃ­cio</a><span>/</span><span>O Case</span></nav>
+        <nav class="crumbs"><a href="#/">Início</a><span>/</span><span>O Case</span></nav>
         <div class="hub-head__top">
           <span class="ico-tile ico-tile--xl ico-tile--accent">${icon("compass")}</span>
           <div>
-            <h1 class="h1">HUMAN em uma pÃ¡gina</h1>
+            <h1 class="h1">HUMAN em uma página</h1>
             <p class="lead mt-8">Employee Experience aplicado a produto digital.</p>
           </div>
         </div>
@@ -1069,7 +1069,7 @@
       </div>
 
       <div class="section-head mt-56">
-        <div><span class="eyebrow">Como funciona</span><h2 class="h2 mt-10">Da necessidade Ã  aÃ§Ã£o</h2></div>
+        <div><span class="eyebrow">Como funciona</span><h2 class="h2 mt-10">Da necessidade à ação</h2></div>
       </div>
       <div class="flow flow--wide reveal">
         ${c.flow.map((f, i) => `
@@ -1082,7 +1082,7 @@
       </div>
 
       <div class="section-head mt-56">
-        <div><span class="eyebrow">PrincÃ­pios</span><h2 class="h2 mt-10">O que guiou cada tela</h2></div>
+        <div><span class="eyebrow">Princípios</span><h2 class="h2 mt-10">O que guiou cada tela</h2></div>
       </div>
       <div class="grid grid--4 reveal">
         ${c.principles.map((p) => `
@@ -1094,7 +1094,7 @@
       </div>
 
       <div class="section-head mt-56">
-        <div><span class="eyebrow">Indicadores</span><h2 class="h2 mt-10">HipÃ³teses de valor</h2></div>
+        <div><span class="eyebrow">Indicadores</span><h2 class="h2 mt-10">Hipóteses de valor</h2></div>
       </div>
       <div class="grid grid--4 reveal">
         ${c.metrics.map((m) => `
@@ -1104,27 +1104,27 @@
             <div class="metric__d">${esc(m.d)}</div>
           </div>`).join("")}
       </div>
-      <p class="small muted mt-18">Indicadores hipotÃ©ticos, definidos como meta do produto conceitual.</p>
+      <p class="small muted mt-18">Indicadores hipotéticos, definidos como meta do produto conceitual.</p>
 
       <div class="feature-strip reveal mt-56">
         <span class="eyebrow">Conceito de marca</span>
-        <h2 class="h2 mt-12" style="max-width:18ch">Tecnologia como meio. Cuidado como propÃ³sito.</h2>
-        <p class="lead mt-14" style="max-width:48ch">Nenhuma interface cuida de alguÃ©m. Mas ela pode encurtar a distÃ¢ncia atÃ© quem cuida.</p>
-        <div class="mt-28"><a class="btn btn--accent" href="#/">Voltar Ã  experiÃªncia ${arrow()}</a></div>
+        <h2 class="h2 mt-12" style="max-width:18ch">Tecnologia como meio. Cuidado como propósito.</h2>
+        <p class="lead mt-14" style="max-width:48ch">Nenhuma interface cuida de alguém. Mas ela pode encurtar a distância até quem cuida.</p>
+        <div class="mt-28"><a class="btn btn--accent" href="#/">Voltar à experiência ${arrow()}</a></div>
       </div>
     </section>`;
   }
 
   /* ==================================================================
      11-B. ESPECIAL SETEMBRO AMARELO
-     "Cuidar da vida nÃ£o cabe em um mÃªs."
+     "Cuidar da vida não cabe em um mês."
 
      Reaproveita integralmente: runTimer() (estendido com onFinish,
-     ver seÃ§Ã£o 4), openModal()/closeModal(), store, toast(), blockHead(),
-     o padrÃ£o visual de .acard/.tag/.support-panel/.recog e a delegaÃ§Ã£o
-     global de cliques (sÃ³ foi acrescentado o ramo [data-sa-again]).
+     ver seção 4), openModal()/closeModal(), store, toast(), blockHead(),
+     o padrão visual de .acard/.tag/.support-panel/.recog e a delegação
+     global de cliques (só foi acrescentado o ramo [data-sa-again]).
 
-     Nada aqui atribui nota, streak ou avaliaÃ§Ã£o. Toda experiÃªncia pode
+     Nada aqui atribui nota, streak ou avaliação. Toda experiência pode
      ser repetida quantas vezes a pessoa quiser.
      ================================================================== */
 
@@ -1132,8 +1132,8 @@
     return exp.tempoLivre ? "Sem tempo fixo" : `${exp.tempo} min`;
   }
 
-  /* referÃªncia ao render() do calendÃ¡rio, para atualizÃ¡-lo ao vivo
-     quando um momento Ã© registrado na mesma visita Ã  pÃ¡gina */
+  /* referência ao render() do calendário, para atualizá-lo ao vivo
+     quando um momento é registrado na mesma visita à página */
   let saCalRefresh = null;
 
   function saDateKey(d) {
@@ -1145,7 +1145,7 @@
     return d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
   }
 
-  /* ---- registro do momento (â™¥ "Fiz por mim") + mensagem de reconhecimento ---- */
+  /* ---- registro do momento (♥ "Fiz por mim") + mensagem de reconhecimento ---- */
   function saRegistrar(exp, opts) {
     const momentos = store.get("setembroMomentos", []);
     momentos.push({
@@ -1174,7 +1174,7 @@
       </div>`;
   }
 
-  /* ---- ficha de uma experiÃªncia (reaproveita a estrutura do modal) ---- */
+  /* ---- ficha de uma experiência (reaproveita a estrutura do modal) ---- */
   function openExperience(id) {
     const exp = D.setembroAmarelo.experiencias.find((e) => e.id === id);
     if (exp) renderExperience(exp);
@@ -1186,7 +1186,7 @@
       <div class="modal__head">
         <span class="ico-tile ico-tile--yellow">${icon(exp.icon)}</span>
         <span>
-          <span class="eyebrow eyebrow--accent">${esc(cat.label)} Â· ${esc(saTempoLabel(exp))}</span>
+          <span class="eyebrow eyebrow--accent">${esc(cat.label)} · ${esc(saTempoLabel(exp))}</span>
           <h2 class="h2 mt-6">${esc(exp.titulo)}</h2>
         </span>
       </div>
@@ -1200,12 +1200,12 @@
       <div class="modal__actions" id="saActions">
         ${exp.usaTimer
           ? `<button class="btn btn--yellow" id="saStart">${icon("play")} Iniciar ${exp.tempo} min</button>`
-          : `<button class="btn btn--yellow" id="saGoing">Vou fazer ðŸ’›</button>`}
+          : `<button class="btn btn--yellow" id="saGoing">Vou fazer 💛</button>`}
       </div>
       <div id="saTimerSlot"></div>
       <p class="modal__note">${exp.usaTimer
-        ? "VocÃª nÃ£o precisa terminar o tempo atÃ© o fim para esse momento valer. DÃ¡ para encerrar quando quiser."
-        : "VocÃª pode fazer isso quantas vezes quiser, hoje ou em outro dia."}</p>
+        ? "Você não precisa terminar o tempo até o fim para esse momento valer. Dá para encerrar quando quiser."
+        : "Você pode fazer isso quantas vezes quiser, hoje ou em outro dia."}</p>
     `);
 
     if (exp.usaTimer) {
@@ -1228,7 +1228,7 @@
     }
   }
 
-  /* ---- cartÃ£o do banco de experiÃªncias (reaproveita .acard/.tag) ---- */
+  /* ---- cartão do banco de experiências (reaproveita .acard/.tag) ---- */
   function saExpCard(exp) {
     const cat = D.setembroAmarelo.categorias[exp.categoria];
     return `
@@ -1240,11 +1240,11 @@
         <span class="tag sa-tag--${exp.categoria} mt-10">${esc(cat.label)}</span>
         <span class="acard__t mt-8">${esc(exp.titulo)}</span>
         <span class="acard__d">${esc(exp.texto)}</span>
-        <span class="acard__cta">Ver experiÃªncia ${arrow()}</span>
+        <span class="acard__cta">Ver experiência ${arrow()}</span>
       </button>`;
   }
 
-  /* ---- gerador do caÃ§a-palavras "Encontre em VocÃª" ---- */
+  /* ---- gerador do caça-palavras "Encontre em Você" ---- */
   function saBuildWordSearch(words, size) {
     const grid = Array.from({ length: size }, () => Array(size).fill(null));
     const dirs = [[0, 1], [1, 0], [1, 1], [1, -1], [0, -1], [-1, 0], [-1, -1], [-1, 1]];
@@ -1352,7 +1352,7 @@
           const word=wordFrom(pendingCoords), rev=word.split("").reverse().join("");
           const match=state.words.find(w=>!state.found.has(w)&&(w===word||w===rev));
           if(match){state.found.add(match);pendingCoords.forEach(k=>state.foundCells.add(k));toast(`${match} encontrada.`,"ok");render();}
-          else { clearSelecting(); pendingCoords=[]; btn.remove(); toast("Essa seleÃ§Ã£o nÃ£o forma uma das palavras da lista."); }
+          else { clearSelecting(); pendingCoords=[]; btn.remove(); toast("Essa seleção não forma uma das palavras da lista."); }
         });
       };
       grid.addEventListener("pointerup", finish);
@@ -1445,7 +1445,7 @@
               <span>${esc(e.titulo)}</span>
             </button>`).join("")}
         </div>
-        <button class="btn btn--ghost mt-18" id="saRoletaAgain">${icon("shuffle")} Quero outras opÃ§Ãµes</button>`);
+        <button class="btn btn--ghost mt-18" id="saRoletaAgain">${icon("shuffle")} Quero outras opções</button>`);
       $$("[data-exp]").forEach((b) => b.addEventListener("click", () => openExperience(b.dataset.exp)));
       $("#saRoletaAgain").addEventListener("click", render);
     }
@@ -1473,19 +1473,19 @@
         const k = saDateKey(new Date(y, mo, d));
         const n = (byDay[k] || []).length;
         cells += `<button class="sa-cal__cell${n ? " has-momentos" : ""}" data-day="${k}">
-          <span>${d}</span>${n ? `<span class="sa-cal__heart">â™¥${n > 1 ? n : ""}</span>` : ""}
+          <span>${d}</span>${n ? `<span class="sa-cal__heart">♥${n > 1 ? n : ""}</span>` : ""}
         </button>`;
       }
 
       box.innerHTML = `
         ${momentos.length
-          ? `<p class="lead sa-cal__summary">â™¥ ${momentos.length} ${momentos.length === 1 ? "momento por mim" : "momentos por mim"}</p>`
+          ? `<p class="lead sa-cal__summary">♥ ${momentos.length} ${momentos.length === 1 ? "momento por mim" : "momentos por mim"}</p>`
           : `<p class="lead muted">${esc(D.setembroAmarelo.meuTempo.vazio)}</p>`}
         <div class="sa-cal">
           <div class="sa-cal__nav">
-            <button class="icon-btn" id="saCalPrev" aria-label="MÃªs anterior">${icon("arrow", "sa-cal__prev")}</button>
+            <button class="icon-btn" id="saCalPrev" aria-label="Mês anterior">${icon("arrow", "sa-cal__prev")}</button>
             <b>${esc(monthLabel)}</b>
-            <button class="icon-btn" id="saCalNext" aria-label="PrÃ³ximo mÃªs">${icon("arrow")}</button>
+            <button class="icon-btn" id="saCalNext" aria-label="Próximo mês">${icon("arrow")}</button>
           </div>
           <div class="sa-cal__week">${["D", "S", "T", "Q", "Q", "S", "S"].map((d) => `<span>${d}</span>`).join("")}</div>
           <div class="sa-cal__grid">${cells}</div>
@@ -1508,8 +1508,8 @@
             <div class="list-mini__row" style="cursor:default">
               <span class="ico-tile ico-tile--sm">${icon((D.setembroAmarelo.experiencias.find((e) => e.id === m.id) || {}).icon || "heart")}</span>
               <span>
-                <span class="list-mini__t">${esc(saFmtHora(new Date(m.ts)))} Â· ${esc(m.titulo)}</span>
-                <span class="list-mini__m">${m.concluido ? "ConcluÃ­do" : "Interrompido, mas vÃ¡lido do mesmo jeito"}${m.tempoFeito ? " Â· " + m.tempoFeito + " min" : ""}</span>
+                <span class="list-mini__t">${esc(saFmtHora(new Date(m.ts)))} · ${esc(m.titulo)}</span>
+                <span class="list-mini__m">${m.concluido ? "Concluído" : "Interrompido, mas válido do mesmo jeito"}${m.tempoFeito ? " · " + m.tempoFeito + " min" : ""}</span>
               </span>
             </div>`).join("")}
         </div>`);
@@ -1519,11 +1519,11 @@
   }
 
   /* ---- Feedback ----
-     Mensagem anÃ´nima (sem nome, e-mail ou identificaÃ§Ã£o). Enviada por
-     POST direto Ã  tabela "Mensagens" do Supabase via REST, usando a
-     chave publishable (segura para o navegador; a proteÃ§Ã£o real vem da
+     Mensagem anônima (sem nome, e-mail ou identificação). Enviada por
+     POST direto à tabela "Mensagens" do Supabase via REST, usando a
+     chave publishable (segura para o navegador; a proteção real vem da
      RLS, que libera apenas INSERT para "anon"). Se o envio falhar, a
-     mensagem fica guardada sÃ³ neste navegador, sem fingir que chegou
+     mensagem fica guardada só neste navegador, sem fingir que chegou
      ao destino. */
   function mountSaFeedback() {
     const form = $("#saFeedbackForm");
@@ -1534,11 +1534,11 @@
       const btn = form.querySelector('button[type="submit"]');
       const msg = field.value.trim();
       if (!msg) { toast("Escreva uma mensagem antes de enviar."); return; }
-      if (msg.length > 500) { toast("Sua mensagem pode ter atÃ© 500 caracteres."); return; }
+      if (msg.length > 500) { toast("Sua mensagem pode ter até 500 caracteres."); return; }
       btn.disabled = true;
       btn.textContent = "Enviando...";
       try {
-        if (typeof fetch !== "function") throw new Error("fetch indisponÃ­vel neste navegador");
+        if (typeof fetch !== "function") throw new Error("fetch indisponível neste navegador");
         const res = await fetch(`${SUPABASE_URL}/rest/v1/Mensagens`, {
           method: "POST",
           headers: {
@@ -1558,71 +1558,71 @@
         const backup = store.get("setembroFeedbackPendente", []);
         backup.push({ ts: new Date().toISOString(), mensagem: msg });
         store.set("setembroFeedbackPendente", backup);
-        toast("NÃ£o foi possÃ­vel enviar agora. Guardamos sua mensagem por aqui para tentar de novo mais tarde.");
+        toast("Não foi possível enviar agora. Guardamos sua mensagem por aqui para tentar de novo mais tarde.");
         btn.disabled = false;
         btn.innerHTML = `${icon("send")} ${esc(D.setembroAmarelo.feedback.cta)}`;
       }
     });
   }
 
-  /* ---- view + mount da pÃ¡gina ---- */
+  /* ---- view + mount da página ---- */
   function viewSetembro() {
     const SA = D.setembroAmarelo;
     return `
     <section class="hub-head sa-hero">
       <div class="wrap">
         <div class="hub-head__top">
-          <span class="ico-tile ico-tile--xl ico-tile--yellow">ðŸŽ—ï¸</span>
-          <div><span class="sa-eyebrow">HUMAN | Setembro Amarelo ðŸŽ—ï¸</span><h1 class="h1 mt-6">Um tempo para cuidar de vocÃª âœ¨</h1><p class="lead mt-8">${esc(SA.entrada.text)}</p></div>
+          <span class="ico-tile ico-tile--xl ico-tile--yellow">🎗️</span>
+          <div><span class="sa-eyebrow">HUMAN | Setembro Amarelo 🎗️</span><h1 class="h1 mt-6">Um tempo para cuidar de você ✨</h1><p class="lead mt-8">${esc(SA.entrada.text)}</p></div>
         </div>
-        <p class="sa-impact">Cuidar de vocÃª nÃ£o precisa comeÃ§ar com uma grande mudanÃ§a âœ¨</p>
+        <p class="sa-impact">Cuidar de você não precisa começar com uma grande mudança ✨</p>
       </div>
     </section>
 
     <section class="section section--tight"><div class="wrap">
-      <button class="sa-knowledge sa-knowledge--yellow" id="saWhy"><span>ðŸŽ—ï¸</span><span><b>${esc(SA.contexto.title)}</b><small>ConheÃ§a a histÃ³ria por trÃ¡s da fita amarela.</small></span>${arrow()}</button>
-      <button class="sa-knowledge mt-12" id="saDidYouKnow"><span>âœ¨</span><span><b>VocÃª sabia?</b><small>ConheÃ§a acessos gratuitos de cuidado disponÃ­veis pelo SUS.</small></span>${arrow()}</button>
-      <button class="sa-cvv-card mt-12" id="saCvvQuick"><span class="sa-cvv-card__icon">ðŸ“ž</span><span><b>Precisa conversar? CVV 188</b><small>Escuta gratuita, sigilosa e disponÃ­vel 24 horas.</small></span>${arrow()}</button>
+      <button class="sa-knowledge sa-knowledge--yellow" id="saWhy"><span>🎗️</span><span><b>${esc(SA.contexto.title)}</b><small>Conheça a história por trás da fita amarela.</small></span>${arrow()}</button>
+      <button class="sa-knowledge mt-12" id="saDidYouKnow"><span>✨</span><span><b>Você sabia?</b><small>Conheça acessos gratuitos de cuidado disponíveis pelo SUS.</small></span>${arrow()}</button>
+      <button class="sa-cvv-card mt-12" id="saCvvQuick"><span class="sa-cvv-card__icon">📞</span><span><b>Precisa conversar? CVV 188</b><small>Escuta gratuita, sigilosa e disponível 24 horas.</small></span>${arrow()}</button>
     </div></section>
 
     <section class="section section--tight" id="sa-banco"><div class="wrap">
-      <div class="block-head"><div><span class="eyebrow">Um tempo para vocÃª</span><h2 class="h2 mt-8">Quanto tempo vocÃª tem para vocÃª hoje? âœ¨</h2><p class="lead mt-8">Escolha um tempo. O HUMAN sugere uma possibilidade de cada vez.</p></div></div>
+      <div class="block-head"><div><span class="eyebrow">Um tempo para você</span><h2 class="h2 mt-8">Quanto tempo você tem para você hoje? ✨</h2><p class="lead mt-8">Escolha um tempo. O HUMAN sugere uma possibilidade de cada vez.</p></div></div>
       <div class="tagrow sa-time-only" id="saTimeFilters">${SA.filtrosTempo.map(t => `<button class="chip" data-time="${t.v}">${esc(t.label)}</button>`).join("")}</div>
-      <div id="saSuggestion" class="mt-20"><div class="sa-gentle-empty">Escolha quanto tempo vocÃª tem e receba uma sugestÃ£o para agora.</div></div>
+      <div id="saSuggestion" class="mt-20"><div class="sa-gentle-empty">Escolha quanto tempo você tem e receba uma sugestão para agora.</div></div>
     </div></section>
 
     <section class="section section--tight section--alt" id="sa-jogos"><div class="wrap">
-      <p class="sa-impact sa-impact--center">Ã€s vezes, cinco minutos jÃ¡ sÃ£o um comeÃ§o âœ¨</p>
+      <p class="sa-impact sa-impact--center">Às vezes, cinco minutos já são um começo ✨</p>
       <div class="grid grid--4 grid--action reveal sa-games-grid">
-        <button class="acard" id="saJogoEncontre"><span class="acard__top"><span class="ico-tile ico-tile--lg">${icon("search")}</span></span><span class="acard__t">${esc(SA.jogos.encontreEmVoce.titulo)}</span><span class="acard__d">Encontre palavras ligadas a cuidado, presenÃ§a e conexÃ£o.</span><span class="acard__cta">Jogar ${arrow()}</span></button>
+        <button class="acard" id="saJogoEncontre"><span class="acard__top"><span class="ico-tile ico-tile--lg">${icon("search")}</span></span><span class="acard__t">${esc(SA.jogos.encontreEmVoce.titulo)}</span><span class="acard__d">Encontre palavras ligadas a cuidado, presença e conexão.</span><span class="acard__cta">Jogar ${arrow()}</span></button>
         <button class="acard" id="saJogoPote"><span class="acard__top"><span class="ico-tile ico-tile--lg">${icon("gift")}</span></span><span class="acard__t">${esc(SA.jogos.poteDasCoisasBoas.titulo)}</span><span class="acard__d">Guarde uma pequena coisa boa do seu dia.</span><span class="acard__cta">Abrir ${arrow()}</span></button>
-        <button class="acard" id="saJogoCartas"><span class="acard__top"><span class="ico-tile ico-tile--lg">${icon("spark")}</span></span><span class="acard__t">${esc(SA.jogos.escolhaUmaCarta.titulo)}</span><span class="acard__d">Escolha um caminho e receba uma experiÃªncia.</span><span class="acard__cta">Escolher ${arrow()}</span></button>
+        <button class="acard" id="saJogoCartas"><span class="acard__top"><span class="ico-tile ico-tile--lg">${icon("spark")}</span></span><span class="acard__t">${esc(SA.jogos.escolhaUmaCarta.titulo)}</span><span class="acard__d">Escolha um caminho e receba uma experiência.</span><span class="acard__cta">Escolher ${arrow()}</span></button>
         <button class="acard" id="saJogoRoleta"><span class="acard__top"><span class="ico-tile ico-tile--lg">${icon("shuffle")}</span></span><span class="acard__t">${esc(SA.jogos.roleta.titulo)}</span><span class="acard__d">Deixe a roleta escolher uma possibilidade para agora.</span><span class="acard__cta">Girar ${arrow()}</span></button>
       </div>
     </div></section>
 
-    <section class="section section--tight" id="sa-tempo"><div class="wrap"><button class="sa-calendar-launch" id="saOpenCalendar"><span>${icon("heart")}</span><span><b>Meu Tempo por Mim âœ¨</b><small>Abra seu calendÃ¡rio de momentos reservados para vocÃª.</small></span>${arrow()}</button><div id="saCalendario" hidden></div></div></section>
+    <section class="section section--tight" id="sa-tempo"><div class="wrap"><button class="sa-calendar-launch" id="saOpenCalendar"><span>${icon("heart")}</span><span><b>Meu Tempo por Mim ✨</b><small>Abra seu calendário de momentos reservados para você.</small></span>${arrow()}</button><div id="saCalendario" hidden></div></div></section>
 
-    <section class="section section--tight" id="sa-feedback"><div class="wrap"><div class="recog reveal"><div class="recog__left"><span class="ico-tile ico-tile--xl ico-tile--yellow">${icon("chat")}</span><span class="eyebrow eyebrow--accent mt-16" style="display:block">${esc(SA.feedback.eyebrow)}</span><h2 class="h2 mt-8">${esc(SA.feedback.title)}</h2><p class="lead mt-10">${esc(SA.feedback.text)}</p></div><form class="recog__form" id="saFeedbackForm" novalidate><label class="fld"><span>Mensagem anÃ´nima</span><textarea id="saFbMsg" rows="4" placeholder="${esc(SA.feedback.placeholderMsg)}" maxlength="500" required></textarea></label><button class="btn btn--yellow" type="submit">${icon("send")} ${esc(SA.feedback.cta)}</button><p class="fld__note">Este espaÃ§o nÃ£o Ã© um canal de atendimento ou emergÃªncia. A mensagem Ã© armazenada anonimamente para demonstrar a funcionalidade deste case.</p></form></div><div id="saFbConfirm"></div></div></section>`;
+    <section class="section section--tight" id="sa-feedback"><div class="wrap"><div class="recog reveal"><div class="recog__left"><span class="ico-tile ico-tile--xl ico-tile--yellow">${icon("chat")}</span><span class="eyebrow eyebrow--accent mt-16" style="display:block">${esc(SA.feedback.eyebrow)}</span><h2 class="h2 mt-8">${esc(SA.feedback.title)}</h2><p class="lead mt-10">${esc(SA.feedback.text)}</p></div><form class="recog__form" id="saFeedbackForm" novalidate><label class="fld"><span>Mensagem anônima</span><textarea id="saFbMsg" rows="4" placeholder="${esc(SA.feedback.placeholderMsg)}" maxlength="500" required></textarea></label><button class="btn btn--yellow" type="submit">${icon("send")} ${esc(SA.feedback.cta)}</button><p class="fld__note">Este espaço não é um canal de atendimento ou emergência. A mensagem é armazenada anonimamente para demonstrar a funcionalidade deste case.</p></form></div><div id="saFbConfirm"></div></div></section>`;
   }
 
   function mountSetembro() {
     const SA = D.setembroAmarelo;
     let time = null, suggestionIndex = {};
     function showSuggestion(next=false) {
-      const host=$("#saSuggestion"); if(!time){host.innerHTML=`<div class="sa-gentle-empty">Escolha quanto tempo vocÃª tem e receba uma sugestÃ£o para agora.</div>`;return;}
+      const host=$("#saSuggestion"); if(!time){host.innerHTML=`<div class="sa-gentle-empty">Escolha quanto tempo você tem e receba uma sugestão para agora.</div>`;return;}
       const pool=SA.experiencias.filter(e=>e.tempo===time); if(!pool.length) return;
       if(next) suggestionIndex[time]=((suggestionIndex[time]??-1)+1)%pool.length;
       else if(suggestionIndex[time]===undefined) suggestionIndex[time]=Math.floor(Math.random()*pool.length);
       const p=pool[suggestionIndex[time]];
-      host.innerHTML=`<article class="sa-single-suggestion"><span class="eyebrow">Uma sugestÃ£o para ${time>=60?'1h+':time+' min'}</span><h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p><div class="sa-single-suggestion__actions"><button class="btn btn--yellow" data-exp="${p.id}">ComeÃ§ar</button><button class="btn btn--ghost" id="saNextSuggestion">â†» Sugerir outra atividade</button></div></article>`;
+      host.innerHTML=`<article class="sa-single-suggestion"><span class="eyebrow">Uma sugestão para ${time>=60?'1h+':time+' min'}</span><h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p><div class="sa-single-suggestion__actions"><button class="btn btn--yellow" data-exp="${p.id}">Começar</button><button class="btn btn--ghost" id="saNextSuggestion">↻ Sugerir outra atividade</button></div></article>`;
       host.querySelector('[data-exp]')?.addEventListener('click',()=>openExperience(p.id));
       $("#saNextSuggestion")?.addEventListener('click',()=>showSuggestion(true));
     }
     $("#saTimeFilters")?.addEventListener("click", e=>{const b=e.target.closest("[data-time]");if(!b)return;time=Number(b.dataset.time);$$('[data-time]',$("#saTimeFilters")).forEach(x=>x.classList.toggle('is-active',Number(x.dataset.time)===time));showSuggestion(false);});
-    $("#saWhy")?.addEventListener("click",()=>openModal(`<div class="sa-history-modal"><span class="sa-history-ribbon">ðŸŽ—ï¸</span><span class="eyebrow">A histÃ³ria do amarelo</span><h2 class="h2 mt-10">${esc(SA.contexto.title)}</h2><p class="lead mt-12">${esc(SA.contexto.resumo)}</p><p class="sa-impact sa-impact--modal">${esc(SA.contexto.closing)}</p></div>`));
-    $("#saDidYouKnow")?.addEventListener("click",()=>openModal(`<span class="eyebrow eyebrow--accent">VocÃª sabia? âœ¨</span><h2 class="h2 mt-10">Cuidado gratuito tambÃ©m existe no SUS</h2><div class="sa-sus-list">${SA.voceSabia.map(x=>`<article><b>${esc(x.titulo)}</b><p>${esc(x.texto)}</p></article>`).join('')}</div><p class="fld__note mt-18">Em risco imediato ou emergÃªncia, procure um serviÃ§o de urgÃªncia da sua regiÃ£o.</p>`));
-    const cvv=()=>openModal(`<span class="eyebrow eyebrow--accent">Canal externo de apoio</span><h2 class="h2 mt-10">CVV | 188</h2><p class="lead mt-12">O Centro de ValorizaÃ§Ã£o da Vida oferece escuta voluntÃ¡ria, gratuita e sigilosa, 24 horas por dia.</p><div class="sa-cvv__actions mt-18"><a class="btn btn--yellow" href="tel:188">${icon('phone')} Ligar 188</a><a class="btn btn--ghost" href="https://cvv.org.br/" target="_blank" rel="noopener">Acessar CVV</a></div><p class="fld__note mt-18">O CVV Ã© um serviÃ§o externo e independente do HUMAN.</p>`);
+    $("#saWhy")?.addEventListener("click",()=>openModal(`<div class="sa-history-modal"><span class="sa-history-ribbon">🎗️</span><span class="eyebrow">A história do amarelo</span><h2 class="h2 mt-10">${esc(SA.contexto.title)}</h2><p class="lead mt-12">${esc(SA.contexto.resumo)}</p><p class="sa-impact sa-impact--modal">${esc(SA.contexto.closing)}</p></div>`));
+    $("#saDidYouKnow")?.addEventListener("click",()=>openModal(`<span class="eyebrow eyebrow--accent">Você sabia? ✨</span><h2 class="h2 mt-10">Cuidado gratuito também existe no SUS</h2><div class="sa-sus-list">${SA.voceSabia.map(x=>`<article><b>${esc(x.titulo)}</b><p>${esc(x.texto)}</p></article>`).join('')}</div><p class="fld__note mt-18">Em risco imediato ou emergência, procure um serviço de urgência da sua região.</p>`));
+    const cvv=()=>openModal(`<span class="eyebrow eyebrow--accent">Canal externo de apoio</span><h2 class="h2 mt-10">CVV | 188</h2><p class="lead mt-12">O Centro de Valorização da Vida oferece escuta voluntária, gratuita e sigilosa, 24 horas por dia.</p><div class="sa-cvv__actions mt-18"><a class="btn btn--yellow" href="tel:188">${icon('phone')} Ligar 188</a><a class="btn btn--ghost" href="https://cvv.org.br/" target="_blank" rel="noopener">Acessar CVV</a></div><p class="fld__note mt-18">O CVV é um serviço externo e independente do HUMAN.</p>`);
     $("#saCvvQuick")?.addEventListener('click',cvv);
     $("#saJogoEncontre")?.addEventListener("click", saGameEncontre); $("#saJogoPote")?.addEventListener("click", saGamePote); $("#saJogoCartas")?.addEventListener("click", saGameCartas); $("#saJogoRoleta")?.addEventListener("click", saGameRoleta);
     $("#saOpenCalendar")?.addEventListener('click',()=>{const c=$("#saCalendario");c.hidden=!c.hidden;if(!c.hidden){mountSaCalendario();c.scrollIntoView({behavior:'smooth',block:'center'});}});
@@ -1639,18 +1639,18 @@
   const searchIndex = []
     .concat(Object.keys(ITEMS).map((id) => {
       const it = ITEMS[id];
-      return { t: it.title, m: `${it.type}${it.minutes ? " Â· " + it.minutes + " min" : ""} Â· ${dimName(it.hub)}`, icon: it.icon,
+      return { t: it.title, m: `${it.type}${it.minutes ? " · " + it.minutes + " min" : ""} · ${dimName(it.hub)}`, icon: it.icon,
         hay: it.title + " " + it.text + " " + (it.points || []).join(" "), go: () => openItem(id) };
     }))
-    .concat(D.benefits.map((b) => ({ t: b.name, m: `BenefÃ­cio Â· ${b.category}`, icon: b.icon,
+    .concat(D.benefits.map((b) => ({ t: b.name, m: `Benefício · ${b.category}`, icon: b.icon,
       hay: b.name + " " + b.short + " " + b.forWhat, go: () => openBenefit(b.id) })))
-    .concat(D.dimensions.map((d) => ({ t: d.name, m: `Hub Â· ${d.tagline}`, icon: d.icon,
+    .concat(D.dimensions.map((d) => ({ t: d.name, m: `Hub · ${d.tagline}`, icon: d.icon,
       hay: d.name + " " + d.tagline, go: () => { location.hash = d.route || "#/dimensao/" + d.id; } })))
-    .concat(D.support.map((s) => ({ t: s.name, m: "Apoio Â· canal da empresa", icon: s.icon,
+    .concat(D.support.map((s) => ({ t: s.name, m: "Apoio · canal da empresa", icon: s.icon,
       hay: s.name + " " + s.what, go: () => { location.hash = "#/apoio"; } })))
-    .concat([{ t: "Especial Setembro Amarelo", m: "Especial Â· cuidado e autocuidado", icon: "heart",
+    .concat([{ t: "Especial Setembro Amarelo", m: "Especial · cuidado e autocuidado", icon: "heart",
       hay: "setembro amarelo cuidado autocuidado bem-estar apoio fiz por mim meu tempo por mim", go: () => { location.hash = "#/setembro-amarelo"; } }])
-    .concat(D.setembroAmarelo.experiencias.map((e) => ({ t: e.titulo, m: "Setembro Amarelo Â· " + (D.setembroAmarelo.categorias[e.categoria] || {}).label, icon: e.icon,
+    .concat(D.setembroAmarelo.experiencias.map((e) => ({ t: e.titulo, m: "Setembro Amarelo · " + (D.setembroAmarelo.categorias[e.categoria] || {}).label, icon: e.icon,
       hay: e.titulo + " " + e.texto, go: () => { location.hash = "#/setembro-amarelo"; setTimeout(() => openExperience(e.id), 260); } })));
 
   let cursor = 0;
@@ -1658,13 +1658,13 @@
   function renderSearch() {
     const q = norm(searchInput.value.trim());
     const items = q ? searchIndex.filter((i) => norm(i.hay).includes(q)).slice(0, 8)
-                    : searchIndex.filter((i) => i.m.indexOf("Hub Â·") === 0).slice(0, 6);
+                    : searchIndex.filter((i) => i.m.indexOf("Hub ·") === 0).slice(0, 6);
     cursor = 0;
     searchResults.innerHTML = items.length
       ? items.map((i, k) => `<button class="search-item${k === 0 ? " is-cursor" : ""}" data-k="${k}">
           <span class="ico-tile ico-tile--sm">${icon(i.icon)}</span>
           <span><span class="search-item__t">${esc(i.t)}</span><span class="search-item__m">${esc(i.m)}</span></span></button>`).join("")
-      : `<div class="search-empty">Nenhum resultado para "${esc(searchInput.value)}â¬.</div>`;
+      : `<div class="search-empty">Nenhum resultado para "${esc(searchInput.value)}⬝.</div>`;
     searchResults._items = items;
   }
 
@@ -1796,13 +1796,13 @@
   $("#nav").addEventListener("click", (e) => { if (e.target.tagName === "A") $("#nav").classList.remove("is-open"); });
   $("#savedOpen")?.addEventListener("click", openSavedList);
 
-  // Cards bloqueados no rodapÃ©: mantÃªm a prÃ©via do HUMAN sem liberar os mÃ³dulos.
+  // Cards bloqueados no rodapé: mantêm a prévia do HUMAN sem liberar os módulos.
   $$("[data-footer-locked]").forEach((b) => b.addEventListener("click", () => {
-    openModal(`<span class="eyebrow eyebrow--accent">HUMAN</span><h2 class="h2 mt-10">Em setembro, o HUMAN estÃ¡ vivendo uma experiÃªncia especial. ðŸ’›</h2><p class="lead mt-12">Os demais espaÃ§os ficam disponÃ­veis em breve.</p><button class="btn btn--yellow mt-18" data-close>Continuar no Setembro Amarelo</button>`);
+    openModal(`<span class="eyebrow eyebrow--accent">HUMAN</span><h2 class="h2 mt-10">Em setembro, o HUMAN está vivendo uma experiência especial. 💛</h2><p class="lead mt-12">Os demais espaços ficam disponíveis em breve.</p><button class="btn btn--yellow mt-18" data-close>Continuar no Setembro Amarelo</button>`);
   }));
 
   /* ==================================================================
-     16. INÃCIO
+     16. INÍCIO
      ================================================================== */
   paintSavedCount();
   if (!location.hash) location.hash = "#/";
