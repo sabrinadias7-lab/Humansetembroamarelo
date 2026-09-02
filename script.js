@@ -1,4 +1,3 @@
- 
 /* =====================================================================
    HUMAN. script.js
    SPA sem framework: roteamento por hash, hubs interativos,
