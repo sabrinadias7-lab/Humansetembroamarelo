@@ -858,3 +858,12 @@ ul, ol { list-style: none; padding: 0; }
   .sa-impact{font-size:2rem}.sa-knowledge{padding:16px}.sa-ws{max-width:330px}.sa-ws__cell{font-size:.68rem}
   #saGrid.grid--3{grid-template-columns:1fr}.acard{min-height:0}
 }
+
+/* Setembro Amarelo é a home: menu secundário e compacto */
+@media (max-width: 760px) {
+  .nav.is-open {
+    min-height: auto !important;
+    height: auto !important;
+    padding-bottom: 28px !important;
+  }
+}
