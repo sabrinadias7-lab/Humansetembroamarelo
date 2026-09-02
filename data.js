@@ -399,15 +399,48 @@ window.HUMAN_DATA = {
     },
 
     contexto: {
-      title: "Você sabe por que setembro é amarelo? 🎗️",
+      title: "Você sabe por que setembro é amarelo?",
       resumo: "A história que inspirou o símbolo amarelo começou em 1994, nos Estados Unidos, após a morte de Mike Emme, um jovem de 17 anos conhecido por seu Mustang amarelo. No funeral, familiares e amigos distribuíram cartões e fitas amarelas com mensagens de apoio e incentivo para que quem estivesse passando por um momento difícil pedisse ajuda. O gesto cresceu e a fita amarela passou a ser associada à prevenção do suicídio e à valorização da vida. No Brasil, Setembro Amarelo transformou setembro em um convite coletivo para falar sobre cuidado, escuta e caminhos de apoio.",
       closing: "Setembro nos lembra de uma conversa que precisa continuar o ano inteiro: pedir ajuda, oferecer presença e conhecer os caminhos de cuidado também fazem parte da vida."
     },
 
     voceSabia: [
-      { titulo: "O SUS também oferece cuidado em saúde mental", texto: "Você pode procurar uma Unidade Básica de Saúde (UBS) para orientação e cuidado. Os Centros de Atenção Psicossocial (CAPS) também são serviços públicos de saúde mental e podem ser procurados diretamente para acolhimento." },
-      { titulo: "Existem portas de atendimento para situações urgentes", texto: "Em uma situação que precise de atendimento imediato, a rede pública inclui UPA 24h, pronto-socorro e SAMU pelo 192." },
-      { titulo: "O CVV é um caminho gratuito de escuta", texto: "O Centro de Valorização da Vida oferece apoio emocional gratuito e sigiloso pelo 188, 24 horas por dia. O CVV é um serviço externo e independente do HUMAN." }
+      {
+        id: "saude-mental",
+        icon: "🧠",
+        titulo: "Apoio em saúde mental",
+        resumo: "UBS e CAPS",
+        chamada: "Precisa de apoio em saúde mental?",
+        texto: "A rede pública também oferece cuidado em saúde mental. UBS e CAPS são caminhos gratuitos de acolhimento pelo SUS.\n\nO Meu SUS Digital permite consultar estabelecimentos de acordo com a sua localização e visualizar rotas de acesso, entre eles Unidades Básicas de Saúde, serviços de atenção psicossocial e Academias da Saúde.",
+        ctaLabel: "Encontrar um serviço próximo",
+        ctaUrl: "https://meususdigital.saude.gov.br/",
+        ctaSecLabel: "Entenda como funciona o CAPS",
+        ctaSecUrl: "https://www.gov.br/saude/pt-br/composicao/saes/desmad/raps/caps/caps"
+      },
+      {
+        id: "pode-falar",
+        icon: "💬",
+        titulo: "Pode Falar",
+        resumo: "13 a 24 anos",
+        chamada: "Tem entre 13 e 24 anos?",
+        texto: "Conheça o Pode Falar: um espaço gratuito de acolhimento, escuta e orientação em saúde mental para jovens de 13 a 24 anos, integrado ao Meu SUS Digital.\n\nAtendimento de segunda a sábado, das 8h às 22h, horário de Brasília. O atendimento pode ser anônimo, se você preferir.",
+        ctaLabel: "Conhecer o Pode Falar",
+        ctaUrl: "https://www.gov.br/saude/pt-br/assuntos/noticias-ms/2026/julho/projeto-pode-falar-chega-ao-meu-sus-digital-e-amplia-acesso-de-jovens-ao-cuidado-em-saude-mental",
+        ctaSecLabel: "Acessar Meu SUS Digital",
+        ctaSecUrl: "https://meususdigital.saude.gov.br/"
+      },
+      {
+        id: "academia-saude",
+        icon: "🏃",
+        titulo: "Academia da Saúde",
+        resumo: "Movimento e bem-estar",
+        chamada: "Você conhece a Academia da Saúde?",
+        texto: "O SUS também tem espaços públicos voltados à promoção da saúde e à qualidade de vida, com práticas corporais, atividades físicas e outras ações de cuidado e bem-estar.\n\nAs atividades disponíveis podem variar conforme o polo ou a localidade.",
+        ctaLabel: "Conhecer a Academia da Saúde",
+        ctaUrl: "https://www.gov.br/saude/pt-br/composicao/saps/academia-da-saude/programa-academia-da-saude",
+        ctaSecLabel: "Encontrar uma perto de mim",
+        ctaSecUrl: "https://meususdigital.saude.gov.br/"
+      }
     ],
 
     precisaHoje: [

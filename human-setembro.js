@@ -1565,6 +1565,57 @@
     });
   }
 
+  /* ---- CVV: canal externo, com identidade própria ---- */
+  function openCvvModal() {
+    openModal(`<span class="eyebrow eyebrow--accent">Canal externo de apoio</span><h2 class="h2 mt-10">CVV | 188</h2><p class="lead mt-12">O Centro de Valorização da Vida oferece escuta voluntária, gratuita e sigilosa, 24 horas por dia.</p><div class="sa-cvv__actions mt-18"><a class="btn btn--yellow" href="tel:188">${icon('phone')} Ligar 188</a><a class="btn btn--ghost" href="https://cvv.org.br/" target="_blank" rel="noopener noreferrer">Acessar CVV</a></div><p class="fld__note mt-18">O CVV é um serviço externo e independente do HUMAN.</p>`);
+  }
+
+  /* ---- Você sabia: 3 caminhos gratuitos pelo SUS, expansíveis um de cada vez ---- */
+  function renderVoceSabia() {
+    const items = D.setembroAmarelo.voceSabia;
+    let open = null;
+
+    function html() {
+      return `
+        <span class="eyebrow eyebrow--accent">Você sabia? ✨</span>
+        <h2 class="h2 mt-10">Caminhos gratuitos de cuidado</h2>
+        <p class="lead mt-8">Três possibilidades públicas e gratuitas, com foco em saúde mental, acolhimento e bem-estar.</p>
+        <div class="sa-know-list mt-16">
+          ${items.map((x, i) => `
+            <div class="sa-know-card${open === i ? " is-open" : ""}">
+              <button class="sa-know-card__head" data-know="${i}">
+                <span class="sa-know-card__icon">${x.icon}</span>
+                <span class="sa-know-card__text"><b>${esc(x.titulo)}</b><small>${esc(x.resumo)}</small></span>
+                <span class="sa-know-card__toggle">${open === i ? "−" : "+"}</span>
+              </button>
+              ${open === i ? `
+                <div class="sa-know-card__body">
+                  <p class="sa-know-card__q">${esc(x.chamada)}</p>
+                  <p style="white-space:pre-line">${esc(x.texto)}</p>
+                  <div class="sa-know-card__links">
+                    <a class="btn btn--yellow btn--sm" href="${x.ctaUrl}" target="_blank" rel="noopener noreferrer">${esc(x.ctaLabel)}</a>
+                    ${x.ctaSecLabel ? `<a class="btn btn--ghost btn--sm" href="${x.ctaSecUrl}" target="_blank" rel="noopener noreferrer">${esc(x.ctaSecLabel)}</a>` : ""}
+                  </div>
+                  <p class="fld__note mt-10">Link oficial do SUS. O HUMAN não presta nem localiza esse atendimento.</p>
+                </div>` : ""}
+            </div>`).join("")}
+        </div>
+        <button class="sa-cvv-card mt-18" id="saKnowCvv"><span class="sa-cvv-card__icon">📞</span><span><b>Precisa conversar? CVV 188</b><small>Escuta gratuita, sigilosa e disponível 24 horas.</small></span>${arrow()}</button>
+        <p class="fld__note mt-14">Em risco imediato ou emergência, procure um serviço de urgência da sua região.</p>`;
+    }
+
+    function render() {
+      openModal(html());
+      $$("[data-know]").forEach((b) => b.addEventListener("click", () => {
+        const i = Number(b.dataset.know);
+        open = open === i ? null : i;
+        render();
+      }));
+      $("#saKnowCvv")?.addEventListener("click", openCvvModal);
+    }
+    render();
+  }
+
   /* ---- view + mount da página ---- */
   function viewSetembro() {
     const SA = D.setembroAmarelo;
@@ -1573,7 +1624,7 @@
       <div class="wrap">
         <div class="hub-head__top">
           <span class="ico-tile ico-tile--xl ico-tile--yellow">🎗️</span>
-          <div><span class="sa-eyebrow">HUMAN | Setembro Amarelo 🎗️</span><h1 class="h1 mt-6">Um tempo para cuidar de você ✨</h1><p class="lead mt-8">${esc(SA.entrada.text)}</p></div>
+          <div><span class="sa-eyebrow">HUMAN | Setembro Amarelo</span><h1 class="h1 mt-6">Um tempo para cuidar de você ✨</h1><p class="lead mt-8">${esc(SA.entrada.text)}</p></div>
         </div>
         <p class="sa-impact">Cuidar de você não precisa começar com uma grande mudança ✨</p>
       </div>
@@ -1581,7 +1632,7 @@
 
     <section class="section section--tight"><div class="wrap">
       <button class="sa-knowledge sa-knowledge--yellow" id="saWhy"><span>🎗️</span><span><b>${esc(SA.contexto.title)}</b><small>Conheça a história por trás da fita amarela.</small></span>${arrow()}</button>
-      <button class="sa-knowledge mt-12" id="saDidYouKnow"><span>✨</span><span><b>Você sabia?</b><small>Conheça acessos gratuitos de cuidado disponíveis pelo SUS.</small></span>${arrow()}</button>
+      <button class="sa-knowledge mt-12" id="saDidYouKnow"><span>✨</span><span><b>Você sabia?</b><small>Caminhos gratuitos de saúde mental e bem-estar.</small></span>${arrow()}</button>
       <button class="sa-cvv-card mt-12" id="saCvvQuick"><span class="sa-cvv-card__icon">📞</span><span><b>Precisa conversar? CVV 188</b><small>Escuta gratuita, sigilosa e disponível 24 horas.</small></span>${arrow()}</button>
     </div></section>
 
@@ -1621,8 +1672,8 @@
     }
     $("#saTimeFilters")?.addEventListener("click", e=>{const b=e.target.closest("[data-time]");if(!b)return;time=Number(b.dataset.time);$$('[data-time]',$("#saTimeFilters")).forEach(x=>x.classList.toggle('is-active',Number(x.dataset.time)===time));showSuggestion(false);});
     $("#saWhy")?.addEventListener("click",()=>openModal(`<div class="sa-history-modal"><span class="sa-history-ribbon">🎗️</span><span class="eyebrow">A história do amarelo</span><h2 class="h2 mt-10">${esc(SA.contexto.title)}</h2><p class="lead mt-12">${esc(SA.contexto.resumo)}</p><p class="sa-impact sa-impact--modal">${esc(SA.contexto.closing)}</p></div>`));
-    $("#saDidYouKnow")?.addEventListener("click",()=>openModal(`<span class="eyebrow eyebrow--accent">Você sabia? ✨</span><h2 class="h2 mt-10">Cuidado gratuito também existe no SUS</h2><div class="sa-sus-list">${SA.voceSabia.map(x=>`<article><b>${esc(x.titulo)}</b><p>${esc(x.texto)}</p></article>`).join('')}</div><p class="fld__note mt-18">Em risco imediato ou emergência, procure um serviço de urgência da sua região.</p>`));
-    const cvv=()=>openModal(`<span class="eyebrow eyebrow--accent">Canal externo de apoio</span><h2 class="h2 mt-10">CVV | 188</h2><p class="lead mt-12">O Centro de Valorização da Vida oferece escuta voluntária, gratuita e sigilosa, 24 horas por dia.</p><div class="sa-cvv__actions mt-18"><a class="btn btn--yellow" href="tel:188">${icon('phone')} Ligar 188</a><a class="btn btn--ghost" href="https://cvv.org.br/" target="_blank" rel="noopener">Acessar CVV</a></div><p class="fld__note mt-18">O CVV é um serviço externo e independente do HUMAN.</p>`);
+    $("#saDidYouKnow")?.addEventListener("click", renderVoceSabia);
+    const cvv = openCvvModal;
     $("#saCvvQuick")?.addEventListener('click',cvv);
     $("#saJogoEncontre")?.addEventListener("click", saGameEncontre); $("#saJogoPote")?.addEventListener("click", saGamePote); $("#saJogoCartas")?.addEventListener("click", saGameCartas); $("#saJogoRoleta")?.addEventListener("click", saGameRoleta);
     $("#saOpenCalendar")?.addEventListener('click',()=>{const c=$("#saCalendario");c.hidden=!c.hidden;if(!c.hidden){mountSaCalendario();c.scrollIntoView({behavior:'smooth',block:'center'});}});
